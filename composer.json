@@ -3,8 +3,8 @@
     "description": "create my first blog in php",
     "autoload": {
         "psr-4": {
-            "Vince\\VincentLisa1RepositoryGit042023\\": "src/",
-            "Router\\": "routes/"
+            "Router\\": "routes/",
+            "App\\": "app/"
         }
     },
     "authors": [
