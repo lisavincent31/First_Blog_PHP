@@ -1,0 +1,17 @@
+{
+    "name": "vince/vincent_lisa_1_repository_git_042023",
+    "description": "create my first blog in php",
+    "autoload": {
+        "psr-4": {
+            "Vince\\VincentLisa1RepositoryGit042023\\": "src/",
+            "Router\\": "routes/"
+        }
+    },
+    "authors": [
+        {
+            "name": "lisavincent31",
+            "email": "lisa.vincent31150@gmail.com"
+        }
+    ],
+    "require": {}
+}
