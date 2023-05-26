@@ -1,13 +1,4 @@
-<?php if(isset($_SESSION['errors'])) : ?>
-    <?php foreach($_SESSION['errors'] as $errorsArray) : ?>
-        <?php foreach($errorsArray as $error) : ?>
-            <div class="alert alert-danger">
-                <li><?= $error ?></li>
-            </div>
-        <?php endforeach ?>
-    <?php endforeach ?>
-<?php endif ?>
-<div class="row container-anim">
+<div class="row container-anim m-0">
     <div class="col-md-10 col-lg-8 m-auto border shadow my-5 p-3">
         <h1 class="text-center">Connexion</h1>
         <form action="<?= URL.'auth/login' ?>" class="form my-5" id="loginForm" method="POST">

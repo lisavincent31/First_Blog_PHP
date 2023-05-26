@@ -6,7 +6,7 @@
                 <span class="lead px-2">Filtres </span>
                 <button class=" btn btn-primary btn-tags" data-filter="all">Tous</button>
                 <?php foreach($params['tags'] as $tag): ?>
-                    <button class=" btn btn-<?= $tag->badge ?> btn-tags" data-filter="<?= $tag->name ?>"><?= $tag->name ?></button>
+                    <button class=" btn btn-outline-<?= $tag->badge ?> btn-tags" data-filter="<?= $tag->name ?>"><?= $tag->name ?></button>
                 <?php endforeach ?>
             </div>
         </div>

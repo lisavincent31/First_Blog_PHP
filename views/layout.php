@@ -36,7 +36,13 @@
                                     Bienvenu <?= $_SESSION['user']['firstname'] ?>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end">
-                                    <li><a class="dropdown-item" href="<?= URL.'/logout/' ?>">Se déconnecter</a></li>
+                                    <?php if($_SESSION['auth'] == 1) : ?>
+                                    <li><a class="dropdown-item" href="<?= URL.'admin/dashboard/' ?>">Tableau de bord</a></li>
+                                    <?php elseif($_SESSION['auth'] == 0) : ?>
+                                    <li><a class="dropdown-item" href="<?= URL.'user/dashboard/' ?>">Tableau de bord</a></li>
+                                    <?php endif ?>
+                                    <li class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="<?= URL.'logout/' ?>">Se déconnecter</a></li>
                                 </ul>
                             </li>
                             <?php endif ?>
@@ -51,17 +57,25 @@
             </nav>
         </div><!-- End Navbar -->
         <?php endif ?>
-        <?php if(isset($_SESSION['errors'])) : ?>
-            <?php foreach($_SESSION['errors'] as $errorsArray) : ?>
-                <?php foreach($errorsArray as $error) : ?>
-                    <div class="alert alert-danger">
-                        <li><?= $error ?></li>
-                    </div>
-                <?php endforeach ?>
-            <?php endforeach ?>
-        <?php endif ?>
         <!-- Content -->
         <div class="container">
+            <!-- Session Errors -->
+            <div class="row mt-3 p-0">
+                <?php if(isset($_SESSION['errors'])) : ?>
+                    <div class="col-md-10 m-auto"></div>
+                        <div class="alert alert-danger d-flex justify-content-between align-items-center">
+                            <div>
+                                <?php foreach($_SESSION['errors'] as $errorsArray) : ?>
+                                    <?php foreach($errorsArray as $error) : ?>
+                                        <li><?= $error ?></li>
+                                    <?php endforeach ?>
+                                <?php endforeach ?>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                <?php endif ?>
+            </div>
             <?= $content ?>
         </div><!-- End Content -->
         <!-- Scripts Javascript and Bootstrap -->

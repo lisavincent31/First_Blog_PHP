@@ -31,4 +31,8 @@ $router->get('/auth/signup', 'App\Controllers\AuthController@signup');
 $router->post('/auth/signup', 'App\Controllers\AuthController@signupPost');
 $router->get('/logout', 'App\Controllers\AuthController@logout');
 
+// Routes for Dashboards
+$router->get('/admin/dashboard', 'App\Controllers\AuthController@admin');
+$router->get('/user/dashboard', 'App\Controllers\AuthController@user');
+
 $router->run();

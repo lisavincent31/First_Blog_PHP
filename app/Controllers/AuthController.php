@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\Post;
 use App\Validation\Validator;
 
 class AuthController extends Controller {
@@ -36,9 +37,9 @@ class AuthController extends Controller {
             $_SESSION['user']['firstname'] = $user->firstname;
 
             if($_SESSION['auth'] == 1) {
-                return header('Location: ' .URL.'?success=true');
+                return header('Location: ' .URL.'/admin/dashboard?success=true');
             }else{
-                return header('Location: ' .URL."?success=true");
+                return header('Location: ' .URL."/user/dashboard?success=true");
             }
 
         }else{
@@ -93,18 +94,18 @@ class AuthController extends Controller {
     {
         $this->isAdmin();
         $posts = (new Post($this->getDB()))->all();
-        $comments = (new Comment($this->getDB()))->all();
+        // $comments = (new Comment($this->getDB()))->all();
         $users = (new User($this->getDB()))->all();
 
-        return $this->view('admin.dashboard', compact('posts', 'comments', 'users'));
+        return $this->view('admin.dashboard', compact('posts', 'users'));
     }
 
     // return the dashboard user view with all comments write by him
     public function user() 
     {
         $this->isUser();
-        $comments = (new Comment($this->getDB()))->getByUser((int) $_SESSION['user']['id']);
+        // $comments = (new Comment($this->getDB()))->getByUser((int) $_SESSION['user']['id']);
 
-        return $this->view('user.dashboard', compact('comments'));
+        return $this->view('user.dashboard');
     }
 }
