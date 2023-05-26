@@ -21,6 +21,16 @@ class Router {
     }
 
     /**
+     * Function post : return the path with the method POST
+     */
+    public function post(string $path, string $action)
+    {
+        $route = new Route($path, $action);
+        $this->routes['POST'][] = $route;
+        return $route; // On retourne la route pour "enchaîner" les méthodes
+    }
+
+    /**
      * Function run : return
      */
     public function run()

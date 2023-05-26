@@ -24,4 +24,9 @@ $router->get('/', 'App\Controllers\HomeController@index');
 $router->get('/posts', 'App\Controllers\BlogController@index');
 $router->get('/posts/:id', 'App\Controllers\BlogController@show');
 
+// Routes for Authentication
+$router->get('/auth', 'App\Controllers\AuthController@auth');
+$router->post('/auth', 'App\Controllers\AuthController@login');
+$router->post('/auth', 'App\Controllers\AuthController@signup');
+
 $router->run();
