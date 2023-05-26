@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="<?= SCRIPTS . 'css' . DIRECTORY_SEPARATOR . 'bootstrap.min.css' ?>">
     </head>
     <body>
-        <?php if(!str_contains($_SERVER['QUERY_STRING'], QUERY.'auth/')) : ?>
+        <?php if(!str_contains($_SERVER['QUERY_STRING'], QUERY.'auth')) : ?>
         <!-- Navbar -->
         <div class="bs-component mb-4">
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -29,14 +29,29 @@
                             <li class="nav-item">
                                 <a class="nav-link <?php if(str_contains($_SERVER['QUERY_STRING'], QUERY.'posts/')) :  ?> active <?php endif ?>" href="<?= URL . 'posts/' ?>">Blog</a>
                             </li>
+                            <?php if(!isset($_SESSION['auth'])) : ?>
                             <li class="nav-item">
-                                <a class="nav-link <?php if(str_contains($_SERVER['QUERY_STRING'], QUERY.'auth/')) :  ?> active <?php endif ?>" href="<?= URL . 'auth/' ?>">Se connecter</a>
+                                <a class="nav-link <?php if(str_contains($_SERVER['QUERY_STRING'], QUERY.'auth/login')) :  ?> active <?php endif ?>" href="<?= URL . 'auth/login' ?>">Se connecter</a>
                             </li>
+                            <?php else : ?>
+                            <li class="nav-item">
+                                <a class="nav-link <?php if(str_contains($_SERVER['QUERY_STRING'], QUERY.'auth/login')) :  ?> active <?php endif ?>" href="<?= URL . '/logout' ?>">Se déconnecter</a>
+                            </li>
+                            <?php endif ?>  
                         </ul>
                     </div>
                 </div>
             </nav>
         </div><!-- End Navbar -->
+        <?php endif ?>
+        <?php if(isset($_SESSION['errors'])) : ?>
+            <?php foreach($_SESSION['errors'] as $errorsArray) : ?>
+                <?php foreach($errorsArray as $error) : ?>
+                    <div class="alert alert-danger">
+                        <li><?= $error ?></li>
+                    </div>
+                <?php endforeach ?>
+            <?php endforeach ?>
         <?php endif ?>
         <!-- Content -->
         <div class="container">

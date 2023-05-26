@@ -10,9 +10,9 @@ abstract class Controller {
 
     public function __construct(Connection $db) 
     {
-        // if(session_status() === PHP_SESSION_NONE) {
-        //     session_start();
-        // }
+        if(session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         $this->db = $db;
     }
 
@@ -26,6 +26,26 @@ abstract class Controller {
         $content = ob_get_clean();
 
         require VIEWS . 'layout.php';
+    }
+
+    // function return true if a user is admin
+    protected function isAdmin()
+    {
+        if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
+            return true;
+        }else{
+            header('Location: ' .URL.'auth/login');
+        }
+    }
+
+    // function return true if a user is simple user
+    protected function isUser()
+    {
+        if(isset($_SESSION['auth']) && $_SESSION['auth'] == 0) {
+            return true;
+        }else{
+            header('Location: ' .URL.'auth/login');
+        }
     }
 
     // function to get the connexion with the database

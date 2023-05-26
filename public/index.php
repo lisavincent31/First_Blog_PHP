@@ -25,8 +25,10 @@ $router->get('/posts', 'App\Controllers\BlogController@index');
 $router->get('/posts/:id', 'App\Controllers\BlogController@show');
 
 // Routes for Authentication
-$router->get('/auth', 'App\Controllers\AuthController@auth');
-$router->post('/auth', 'App\Controllers\AuthController@login');
-$router->post('/auth', 'App\Controllers\AuthController@signup');
+$router->get('/auth/login', 'App\Controllers\AuthController@login');
+$router->post('/auth/login', 'App\Controllers\AuthController@loginPost');
+$router->get('/auth/signup', 'App\Controllers\AuthController@signup');
+$router->post('/auth/signup', 'App\Controllers\AuthController@signupPost');
+$router->get('/logout', 'App\Controllers\AuthController@logout');
 
 $router->run();

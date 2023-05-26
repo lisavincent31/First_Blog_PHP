@@ -7,23 +7,104 @@ use App\Validation\Validator;
 
 class AuthController extends Controller {
 
-    // get the auth page with the login and signup forms
-    public function auth()
-    {
-        return $this->view('auth.index');
-    }
-
-    // post the login form
+    // return the view of the login form
     public function login()
     {
-        echo 'login function';
+        return $this->view('auth.login');
     }
 
-    // post the signup form
-    public function signup()
+    // function to post the login form
+    public function loginPost()
     {
+        $validator = new Validator($_POST);
+        $errors = $validator->validate([
+            'email' => ['required', 'min:3'],
+            'password' => ['required'],
+        ]);
 
+        if($errors) {
+            $_SESSION['errors'][] = $errors;
+            header('Location: ' .URL.'auth/login');
+            exit;
+        }
+
+        $user = (new User($this->getDB()))->getByEmail($_POST['email']);
+
+        if(password_verify($_POST['password'], $user->password)) {
+            $_SESSION['auth'] = (int) $user->isAdmin;
+            $_SESSION['user']['id'] = $user->id;
+            $_SESSION['user']['firstname'] = $user->firstname;
+
+            if($_SESSION['auth'] == 1) {
+                return header('Location: ' .URL.'?success=true');
+            }else{
+                return header('Location: ' .URL."?success=true");
+            }
+
+        }else{
+            $_SESSION['errors']['password'] = ['Mot de passe incorrect.'];
+            header('Location: ' .URL.'auth/login');
+            exit;
+        }
+    }
+
+    // return the view of the signup form
+    public function signup() 
+    {
+        return $this->view('auth.signup');
+    }
+
+    // function to post the signup form
+    public function signupPost() 
+    {
+        $validator = new Validator($_POST);
+        $errors = $validator->validate([
+            'firstname' => ['required', 'min:3'],
+            'lastname' => ['required', 'min:3'],
+            'email' => ['required', 'min:3', 'unique'],
+            'password' => ['required', 'min:3'],
+        ]);
+
+        if($errors) {
+            $_SESSION['errors'][] = $errors;
+            header('Location: ' .URL.'auth/signup');
+            exit;
+        }else{
+            $user = new User($this->getDB());
+
+            $result = $user->create($_POST);
+
+            if($result) {
+                $this->loginPost();
+            }
+        }
+    }
+
+    // function to logout a user and return to the homepage
+    public function logout() 
+    {
+        session_destroy();
+
+        return header('Location: ' .URL.'/');
+    }
+
+    // Return the dashboard admin view with all posts, comments and users
+    public function admin() 
+    {
+        $this->isAdmin();
+        $posts = (new Post($this->getDB()))->all();
+        $comments = (new Comment($this->getDB()))->all();
+        $users = (new User($this->getDB()))->all();
+
+        return $this->view('admin.dashboard', compact('posts', 'comments', 'users'));
+    }
+
+    // return the dashboard user view with all comments write by him
+    public function user() 
+    {
+        $this->isUser();
+        $comments = (new Comment($this->getDB()))->getByUser((int) $_SESSION['user']['id']);
+
+        return $this->view('user.dashboard', compact('comments'));
     }
 }
-
-?>
