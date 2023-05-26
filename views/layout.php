@@ -29,13 +29,20 @@
                             <li class="nav-item">
                                 <a class="nav-link <?php if(str_contains($_SERVER['QUERY_STRING'], QUERY.'posts/')) :  ?> active <?php endif ?>" href="<?= URL . 'posts/' ?>">Blog</a>
                             </li>
+                            <!-- L'utilisateur est connecté -->
+                            <?php if(isset($_SESSION['auth'])) : ?>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Bienvenu <?= $_SESSION['user']['firstname'] ?>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end">
+                                    <li><a class="dropdown-item" href="<?= URL.'/logout/' ?>">Se déconnecter</a></li>
+                                </ul>
+                            </li>
+                            <?php endif ?>
                             <?php if(!isset($_SESSION['auth'])) : ?>
                             <li class="nav-item">
                                 <a class="nav-link <?php if(str_contains($_SERVER['QUERY_STRING'], QUERY.'auth/login')) :  ?> active <?php endif ?>" href="<?= URL . 'auth/login' ?>">Se connecter</a>
-                            </li>
-                            <?php else : ?>
-                            <li class="nav-item">
-                                <a class="nav-link <?php if(str_contains($_SERVER['QUERY_STRING'], QUERY.'auth/login')) :  ?> active <?php endif ?>" href="<?= URL . '/logout' ?>">Se déconnecter</a>
                             </li>
                             <?php endif ?>  
                         </ul>

@@ -25,6 +25,6 @@
         <div class="border-top mt-4"></div>
     </div>
     <div class="row">
-        <a href="<?= URL . 'posts/' ?>" class="btn btn-secondary float-end my-3 col-3 float-end">Revenir au blog</a>
+        <a href="<?= URL . 'posts/' ?>" class="btn btn-outline-primary float-end my-3 col-3 float-end">Revenir au blog</a>
     </div>
 </div>
