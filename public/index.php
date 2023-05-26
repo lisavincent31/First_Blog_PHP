@@ -7,6 +7,7 @@ require '../vendor/autoload.php';
 define('VIEWS', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR);
 define ('SCRIPTS', dirname($_SERVER['SCRIPT_NAME']) . DIRECTORY_SEPARATOR);
 define('URL', '/Vincent_Lisa_1_repository_git_042023/');
+define('QUERY', 'url=');
 
 // constantes for the connection
 define('DB_NAME', 'myblog');
