@@ -28,3 +28,54 @@ function tagFilter() {
 }
 
 tagFilter();
+
+/**
+ * Auth Flip Card
+ */
+window.requestAnimFrame = (function(){
+    return  window.requestAnimationFrame       ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame    ||
+            function( callback ){
+              window.setTimeout(callback, 1000 / 60);
+            };
+  })();
+
+  var goButton = document.querySelectorAll(".livedemo");
+  var container = document.getElementById("auth");
+  var animating = false;
+
+  goButton.forEach((button) => {
+    button.addEventListener('click', function() {
+
+        if (animating)
+        return;
+
+        container.classList.add('active');
+        animating = true;
+
+        setTimeout(function() {
+        requestAnimFrame(function() {
+            animating = false;
+            container.classList.remove('active');
+            container.classList.toggle('reverse');
+        });
+        }, 680);
+    });
+  });
+// goButton.addEventListener('click', function() {
+
+//     if (animating)
+//     return;
+
+//     container.classList.add('active');
+//     animating = true;
+
+//     setTimeout(function() {
+//     requestAnimFrame(function() {
+//         animating = false;
+//         container.classList.remove('active');
+//         container.classList.toggle('reverse');
+//     });
+//     }, 680);
+// });
