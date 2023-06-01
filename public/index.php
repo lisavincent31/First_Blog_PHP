@@ -50,4 +50,8 @@ $router->get('/admin/comments/delete/:id', 'App\Controllers\Admin\CommentControl
 // Route for create a comment for a specific post
 $router->post('/posts/:id/comment/create', 'App\Controllers\Admin\CommentController@commentPost');
 
+// Routes to see all users and its comments
+$router->get('/admin/users', 'App\Controllers\Admin\UserController@index');
+$router->get('/admin/users/:id', 'App\Controllers\Admin\UserController@show');
+
 $router->run();

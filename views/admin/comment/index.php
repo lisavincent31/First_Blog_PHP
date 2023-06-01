@@ -16,7 +16,6 @@
                 <button class=" btn btn-primary btn-status mx-2" data-filter="all">Tous</button>
                 <button class=" btn btn-outline-success btn-status mx-2" data-filter="accepted">Accepté</button>
                 <button class=" btn btn-outline-info btn-status mx-2" data-filter="pending">En attente</button>
-                <!-- <button class=" btn btn-outline-warning btn-status" data-filter="ignored">Ignoré</button> -->
                 <button class=" btn btn-outline-danger btn-status mx-2" data-filter="deleted">Supprimé</button>
             </div>
         </div>

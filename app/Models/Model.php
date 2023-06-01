@@ -26,6 +26,12 @@ abstract class Model {
         return $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$id], true);
     }
 
+    // get all info by user id
+    public function getByUserId(int $id): array
+    {
+        return $this->query("SELECT * FROM {$this->table} WHERE author = ?", [$id]);
+    }
+
     // create a new entry in the database
     public function create(array $data, ?array $relations = null)
     {
