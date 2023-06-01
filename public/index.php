@@ -35,4 +35,12 @@ $router->get('/logout', 'App\Controllers\AuthController@logout');
 $router->get('/admin/dashboard', 'App\Controllers\AuthController@admin');
 $router->get('/user/dashboard', 'App\Controllers\AuthController@user');
 
+// Routes for manage the posts
+$router->get('/admin/posts', 'App\Controllers\Admin\PostController@index');
+$router->get('/admin/posts/create', 'App\Controllers\Admin\PostController@create');
+$router->post('/admin/posts/create', 'App\Controllers\Admin\PostController@createPost');
+$router->get('/admin/posts/edit/:id', 'App\Controllers\Admin\PostController@edit');
+$router->post('/admin/posts/edit/:id', 'App\Controllers\Admin\PostController@update');
+$router->post('/admin/posts/delete/:id', 'App\Controllers\Admin\PostController@delete');
+
 $router->run();

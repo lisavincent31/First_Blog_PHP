@@ -48,6 +48,31 @@ abstract class Model {
         return $this->query("INSERT INTO {$this->table} ($firstParenthesis) VALUES ($secondParenthesis)", $data);
     }
 
+    // update a specific entry in the database
+    public function update(int $id, array $data, ?array $relations = null)
+    {
+        $data['author'] = 1;
+        $data['updated_at'] = date('Y-m-d H:i:s');
+        $sql_request_part = '';
+
+        $i = 1;
+        foreach($data as $key => $value) {
+            $comma = $i === count($data) ? '' : ', ' ;
+            $sql_request_part .= "{$key} = :{$key}{$comma}";
+            $i++;
+        }
+
+        $data['id'] = $id;
+        
+        return $this->query("UPDATE {$this->table} SET {$sql_request_part} WHERE id = :id", $data);
+    }
+
+    // destroy a specific entry in the database
+    public function destroy(int $id): bool
+    {
+        return $this->query("DELETE FROM {$this->table} WHERE id = ?", [$id]);
+    }
+
     // general function to create the sql queries
     public function query(string $sql, array $param = null, bool $single = null)
     {

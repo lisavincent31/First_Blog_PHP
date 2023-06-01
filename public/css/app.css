@@ -3,6 +3,10 @@
     display: none;
 }
 
+.btn {
+  padding: 0.2rem 0.5rem!important;
+}
+
 /* Auth card animated */
 .container-anim {
     position: relative;

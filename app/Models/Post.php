@@ -36,5 +36,40 @@ HTML;
             WHERE pt.post_id = ?
         ", [$this->id]);
     }
+    
+    // create a new post with the relation tag
+    public function create(array $data, ?array $relations = null)
+    {
+        $data['author'] = 1;
+        
+        parent::create($data);
+
+        $id = $this->db->getPDO()->lastInsertId();
+
+        foreach($relations as $tag_id) {
+            $statement = $this->db->getPDO()->prepare('INSERT post_tag (post_id, tag_id) VALUES (?, ?)');
+            $statement->execute([$id, $tag_id]);
+        }
+
+        return true;
+    }
+
+    // edit a post
+    public function update(int $id, array $data, ?array $relations = null)
+    {
+        parent::update($id, $data);
+
+        $statement = $this->db->getPDO()->prepare('DELETE FROM post_tag WHERE post_id = ?');
+        $result = $statement->execute([$id]);
+
+        foreach($relations as $tag_id) {
+            $statement = $this->db->getPDO()->prepare('INSERT post_tag (post_id, tag_id) VALUES (?, ?)');
+            $statement->execute([$id, $tag_id]);
+        }
+
+        if($result) {
+            return true;
+        }
+    }
 
 }
