@@ -39,12 +39,12 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end">
                                     <?php if($_SESSION['auth'] == 1) : ?>
-                                    <li><a class="dropdown-item" href="<?= URL.'admin/dashboard/' ?>">Tableau de bord</a></li>
-                                    <li><a class="dropdown-item" href="<?= URL.'admin/posts' ?>">Articles</a></li>
-                                    <?php elseif($_SESSION['auth'] == 0) : ?>
-                                    <li><a class="dropdown-item" href="<?= URL.'user/dashboard/' ?>">Tableau de bord</a></li>
+                                        <li><a class="dropdown-item" href="<?= URL.'admin/dashboard/' ?>">Tableau de bord</a></li>
+                                        <li><a class="dropdown-item" href="<?= URL.'admin/posts' ?>">Articles</a></li>
+                                        <li><a class="dropdown-item" href="<?= URL.'admin/comments' ?>">Commentaires</a></li>
+                                        <li><a class="dropdown-item" href="<?= URL.'admin/users' ?>">Utilisateurs</a></li>
+                                        <li class="dropdown-divider"></li>
                                     <?php endif ?>
-                                    <li class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="<?= URL.'logout/' ?>">Se déconnecter</a></li>
                                 </ul>
                             </li>

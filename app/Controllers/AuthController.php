@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Comment;
 use App\Validation\Validator;
 
 class AuthController extends Controller {
@@ -94,18 +95,9 @@ class AuthController extends Controller {
     {
         $this->isAdmin();
         $posts = (new Post($this->getDB()))->all();
-        // $comments = (new Comment($this->getDB()))->all();
+        $comments = (new Comment($this->getDB()))->all();
         $users = (new User($this->getDB()))->all();
 
-        return $this->view('admin.dashboard', compact('posts', 'users'));
-    }
-
-    // return the dashboard user view with all comments write by him
-    public function user() 
-    {
-        $this->isUser();
-        // $comments = (new Comment($this->getDB()))->getByUser((int) $_SESSION['user']['id']);
-
-        return $this->view('user.dashboard');
+        return $this->view('admin.dashboard', compact('posts', 'users', 'comments'));
     }
 }

@@ -37,6 +37,41 @@ HTML;
         ", [$this->id]);
     }
     
+    // get all the comments links to a post
+    public function getComments()
+    {
+        return $this->query("
+        SELECT c.* FROM comments c
+        INNER JOIN comment_post cp ON cp.comment_id = c.id
+        WHERE cp.post_id = ?
+        AND c.status = 'accepted'
+        ", [$this->id]);
+    }
+
+    // get the author of a comment
+    public function getCommentAuthor(int $id)
+    {
+        $author = $this->query("
+        SELECT firstname FROM users
+        INNER JOIN comments on comments.author = users.id
+        WHERE comments.id = ?
+        ", [$id]);
+
+        return $author[0]->firstname;
+    }
+
+    // get the updated date of a comment
+    public function getCommentUpdate(int $id)
+    {
+        $update = $this->query("
+        SELECT updated_at FROM comments
+        WHERE comments.id = ?
+        ", [$id]);
+
+        $date = (new DateTime($update[0]->updated_at))->format('d M Y');
+        return $date;
+    }
+
     // create a new post with the relation tag
     public function create(array $data, ?array $relations = null)
     {

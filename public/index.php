@@ -43,4 +43,11 @@ $router->get('/admin/posts/edit/:id', 'App\Controllers\Admin\PostController@edit
 $router->post('/admin/posts/edit/:id', 'App\Controllers\Admin\PostController@update');
 $router->post('/admin/posts/delete/:id', 'App\Controllers\Admin\PostController@delete');
 
+// Routes for manage the comments post
+$router->get('/admin/comments/', 'App\Controllers\Admin\CommentController@index');
+$router->get('/admin/comments/:id', 'App\Controllers\Admin\CommentController@accept');
+$router->get('/admin/comments/delete/:id', 'App\Controllers\Admin\CommentController@delete');
+// Route for create a comment for a specific post
+$router->post('/posts/:id/comment/create', 'App\Controllers\Admin\CommentController@commentPost');
+
 $router->run();

@@ -19,6 +19,12 @@ class User extends Model {
         return $this->firstname;
     }
 
+    // get the creation date for a post
+    public function getCreatedAt(): string
+    {
+        return (new DateTime($this->created_at))->format('d/m/Y à H:i');
+    }
+
     // get a specific user by its email
     public function getByEmail(string $email): User
     {

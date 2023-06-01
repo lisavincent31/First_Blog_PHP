@@ -23,7 +23,43 @@
             </div>
         </div>
         <div class="border-top mt-4"></div>
+        <div class="col-10 m-auto">
+            <div class="mt-4">
+                <h3>Commentaires :</h3>
+                <?php if(count($params['post']->getComments()) == 0): ?>
+                    <p>Il n'y a pas encore de commentaires pour cet article.</p>
+                <?php endif ?>
+                <table class="table">
+                    <tbody>
+                        <?php foreach($params['post']->getComments() as $comment) : ?>
+                            <tr class="row">
+                                <td class="card-text col-7"><?= $comment->content ?></td>
+                                <td class="card-text col-2">
+                                    <span class="float-end">_ <?= $comment->getCommentAuthor((int) $comment->id) ?></span>
+                                </td>
+                                <td class="col-3">
+                                    <span class="text-muted float-end">
+                                        <?= $comment->getCommentUpdate((int) $comment->id) ?>
+                                    </span>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+            
+            <?php if(isset($_SESSION['auth']) && $_SESSION['auth'] == 0) : ?>
+                <form action="<?= URL.'posts/'.$params['post']->id.'/comment/create/' ?>" class="d-flex justify-content-between" method="POST">
+                    <div class="form-floating col-10">
+                        <input type="text" name="content" class="form-control" placeholder="Laisser un commentaire">
+                        <label for="comment">Laissez un commentaire :</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-small">Valider</button>
+                </form>
+            <?php endif ?>
+        </div>
     </div>
+       
     <div class="row">
         <a href="<?= URL . 'posts/' ?>" class="btn btn-outline-primary float-end my-3 col-3 float-end">Revenir au blog</a>
     </div>
