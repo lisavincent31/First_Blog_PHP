@@ -27,4 +27,29 @@ function tagFilter() {
     });
 }
 
+function statusFilter() {
+    const Sbuttons = document.querySelectorAll('.btn-status');
+    const comments = document.querySelectorAll('.comment');
+    function filter(comment, items) {
+        items.forEach((item) => {
+            const isItemFiltered = !item.classList.contains(comment);
+            const isShowAll = comment.toLowerCase() === "all";
+
+            if(isItemFiltered && !isShowAll) {
+                item.classList.add('hide');
+            } else {
+                item.classList.remove('hide');
+            }
+        });
+    }
+
+    Sbuttons.forEach((Sbutton) => {
+        Sbutton.addEventListener('click', () => {
+            const currentCategory = Sbutton.dataset.filter;
+            filter(currentCategory, comments);
+        });
+    });
+}
+
 tagFilter();
+statusFilter();

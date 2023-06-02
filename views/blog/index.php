@@ -1,11 +1,14 @@
 <div class="container p-4">
-    <h1 class="text-center mb-4">Les derniers articles</h1>
+    <h1 class="text-center p-4 mb-4 shadow">Les derniers articles</h1>
     <div class="row mb-2 align-items-stretch">
-        <div class="col-12 mb-4">
-            <button class=" btn btn-primary btn-tags" data-filter="all">All</button>
-            <?php foreach($params['tags'] as $tag): ?>
-                <button class=" btn btn-<?= $tag->badge ?> btn-tags" data-filter="<?= $tag->name ?>"><?= $tag->name ?></button>
-            <?php endforeach ?>
+        <div class="col-12 mb-4 m-auto p-3">
+            <div class="d-flex justify-content-start align-items-center">
+                <span class="lead px-2">Filtres </span>
+                <button class=" btn btn-primary btn-tags mx-2" data-filter="all">Tous</button>
+                <?php foreach($params['tags'] as $tag): ?>
+                    <button class=" btn btn-outline-<?= $tag->badge ?> btn-tags mx-2" data-filter="<?= $tag->name ?>"><?= $tag->name ?></button>
+                <?php endforeach ?>
+            </div>
         </div>
         <?php foreach($params['posts'] as $post): ?>
             <div class="col-md-6 mb-2 card-post <?php foreach($post->getTags() as $tag): ?> <?= $tag->name ?> <?php endforeach ?>">

@@ -36,5 +36,75 @@ HTML;
             WHERE pt.post_id = ?
         ", [$this->id]);
     }
+    
+    // get all the comments links to a post
+    public function getComments()
+    {
+        return $this->query("
+        SELECT c.* FROM comments c
+        INNER JOIN comment_post cp ON cp.comment_id = c.id
+        WHERE cp.post_id = ?
+        AND c.status = 'accepted'
+        ", [$this->id]);
+    }
+
+    // get the author of a comment
+    public function getCommentAuthor(int $id)
+    {
+        $author = $this->query("
+        SELECT firstname FROM users
+        INNER JOIN comments on comments.author = users.id
+        WHERE comments.id = ?
+        ", [$id]);
+
+        return $author[0]->firstname;
+    }
+
+    // get the updated date of a comment
+    public function getCommentUpdate(int $id)
+    {
+        $update = $this->query("
+        SELECT updated_at FROM comments
+        WHERE comments.id = ?
+        ", [$id]);
+
+        $date = (new DateTime($update[0]->updated_at))->format('d M Y');
+        return $date;
+    }
+
+    // create a new post with the relation tag
+    public function create(array $data, ?array $relations = null)
+    {
+        $data['author'] = 1;
+        
+        parent::create($data);
+
+        $id = $this->db->getPDO()->lastInsertId();
+
+        foreach($relations as $tag_id) {
+            $statement = $this->db->getPDO()->prepare('INSERT post_tag (post_id, tag_id) VALUES (?, ?)');
+            $statement->execute([$id, $tag_id]);
+        }
+
+        return true;
+    }
+
+    // edit a post
+    public function update(int $id, array $data, ?array $relations = null)
+    {
+        parent::update($id, $data);
+
+        $statement = $this->db->getPDO()->prepare('DELETE FROM post_tag WHERE post_id = ?');
+        $result = $statement->execute([$id]);
+
+        foreach($relations as $tag_id) {
+            $statement = $this->db->getPDO()->prepare('INSERT post_tag (post_id, tag_id) VALUES (?, ?)');
+            $statement->execute([$id, $tag_id]);
+        }
+
+        if($result) {
+            return true;
+        }
+    }
 
 }
