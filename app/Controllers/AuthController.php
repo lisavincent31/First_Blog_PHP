@@ -38,6 +38,7 @@ class AuthController extends Controller {
             $_SESSION['user']['firstname'] = $user->firstname;
 
             if($_SESSION['auth'] == 1) {
+                $_SESSION['message'] = 'Vous êtes connecté.';
                 return header('Location: ' .URL.'/admin/dashboard?success=true');
             }else{
                 return header('Location: ' .URL."/user/dashboard?success=true");

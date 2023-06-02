@@ -10,8 +10,8 @@
     <h1 class="text-center my-4">Gestion des commentaires</h1>
 
     <div class="row">
-        <div class="col-12 mb-4 m-auto border shadow rounded p-3">
-            <div class="d-flex justify-content-center align-items-center">
+        <div class="col-12 mb-4 m-auto p-3">
+            <div class="d-flex justify-content-start align-items-center">
                 <span class="lead px-2">Filtres </span>
                 <button class=" btn btn-primary btn-status mx-2" data-filter="all">Tous</button>
                 <button class=" btn btn-outline-success btn-status mx-2" data-filter="accepted">Accepté</button>

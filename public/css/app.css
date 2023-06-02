@@ -7,6 +7,32 @@
   padding: 0.2rem 0.5rem!important;
 }
 
+.networks a {
+  padding: 0.5em 0.8em;  
+}
+
+.networks a:hover {
+  border: 2px solid #000;
+  border-radius: 50%;
+}
+
+/* Background Full Images */
+.bg-image-full{
+  background-repeat:no-repeat; 
+  background-position:center;
+  background-size:cover;
+}
+
+.bg-image-full > div {
+  height: 8rem;
+}
+
+header .bg-image-full {
+  background-repeat:no-repeat; 
+  background-position:center;
+  background-size:cover;
+}
+
 /* Auth card animated */
 .container-anim {
     position: relative;

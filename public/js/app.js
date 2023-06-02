@@ -30,7 +30,6 @@ function tagFilter() {
 function statusFilter() {
     const Sbuttons = document.querySelectorAll('.btn-status');
     const comments = document.querySelectorAll('.comment');
-
     function filter(comment, items) {
         items.forEach((item) => {
             const isItemFiltered = !item.classList.contains(comment);
@@ -47,7 +46,6 @@ function statusFilter() {
     Sbuttons.forEach((Sbutton) => {
         Sbutton.addEventListener('click', () => {
             const currentCategory = Sbutton.dataset.filter;
-            console.log(currentCategory);
             filter(currentCategory, comments);
         });
     });

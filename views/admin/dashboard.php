@@ -2,7 +2,9 @@
     <?php if(isset($_GET['success'])) : ?>
         <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
             <div class="d-flex align-items-center">
-                <p>Vous êtes connecté.</p>
+                <?php if(isset($_SESSION['message'])) : ?>
+                    <p><?= $_SESSION['message'] ?></p>
+                <?php endif ?>
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -32,7 +34,7 @@
                             <td><?= $comment->getPost()->title ?></td>
                             <td><?= $comment->content ?></td>
                             <td><?= $comment->getAuthor(); ?></td>
-                            <td class='text-warning'>En attente</td>
+                            <td class='text-info'>En attente</td>
                             <td>
                                 <div class="d-flex">
                                     <a href="<?= URL."posts/{$comment->getPost()->id}" ?>">

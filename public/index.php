@@ -54,4 +54,7 @@ $router->post('/posts/:id/comment/create', 'App\Controllers\Admin\CommentControl
 $router->get('/admin/users', 'App\Controllers\Admin\UserController@index');
 $router->get('/admin/users/:id', 'App\Controllers\Admin\UserController@show');
 
+// Route for contact form
+$router->post('/contact', 'App\Controllers\MailController@send');
+
 $router->run();
