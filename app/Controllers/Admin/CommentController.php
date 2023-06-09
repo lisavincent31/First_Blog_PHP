@@ -7,7 +7,11 @@ use App\Models\Comment;
 
 class CommentController extends Controller 
 {
-    // return the view of all the comments
+    /**
+     * Return the view of all the comments
+     *
+     * @return void
+     */
     public function index() 
     {
         $this->isAdmin();
@@ -16,7 +20,12 @@ class CommentController extends Controller
         return $this->view('admin.comment.index', compact('comments'));
     }
 
-    // create a new comment for a post
+    /**
+     * Create a new comment for a post
+     *
+     * @param $id
+     * @return void
+     */
     public function commentPost(int $id)
     {
         $this->isUser();
@@ -32,7 +41,12 @@ class CommentController extends Controller
         }
     }
 
-    // update the status comment in accepted by the admin
+    /**
+     * Update the status comment in accepted by the admin
+     *
+     * @param $id
+     * @return void
+     */
     public function accept(int $id)
     {
         $this->isAdmin();

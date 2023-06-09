@@ -1,5 +1,4 @@
 <?php 
-
 namespace App\Controllers;
 
 use App\Models\User;
@@ -7,15 +6,23 @@ use App\Models\Post;
 use App\Models\Comment;
 use App\Validation\Validator;
 
-class AuthController extends Controller {
-
-    // return the view of the login form
+class AuthController extends Controller 
+{
+    /**
+     * Return the view of the login form
+     *
+     * @return void
+     */
     public function login()
     {
         return $this->view('auth.login');
     }
 
-    // function to post the login form
+    /**
+     * Function to post the login form
+     *
+     * @return void
+     */
     public function loginPost()
     {
         $validator = new Validator($_POST);
@@ -52,13 +59,21 @@ class AuthController extends Controller {
         }
     }
 
-    // return the view of the signup form
+    /**
+     * Return the view of the signup form
+     *
+     * @return void
+     */
     public function signup() 
     {
         return $this->view('auth.signup');
     }
 
-    // function to post the signup form
+    /**
+     * Function to post the signup form
+     *
+     * @return void
+     */
     public function signupPost() 
     {
         $validator = new Validator($_POST);
@@ -84,7 +99,11 @@ class AuthController extends Controller {
         }
     }
 
-    // function to logout a user and return to the homepage
+    /**
+     * Function to logout a user and return to the homepage
+     *
+     * @return void
+     */
     public function logout() 
     {
         session_destroy();
@@ -92,7 +111,11 @@ class AuthController extends Controller {
         return header('Location: ' .URL.'/');
     }
 
-    // Return the dashboard admin view with all posts, comments and users
+    /**
+     * Return the dashboard admin view with all posts, comments and users
+     *
+     * @return void
+     */
     public function admin() 
     {
         $this->isAdmin();

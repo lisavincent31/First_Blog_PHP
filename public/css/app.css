@@ -1,10 +1,10 @@
 /* General classes */
-.hide{
-    display: none;
+.hide {
+  display: none;
 }
 
 .btn {
-  padding: 0.2rem 0.5rem!important;
+  padding: 0.2rem 0.5rem;
 }
 
 .networks a {
@@ -17,7 +17,7 @@
 }
 
 /* Background Full Images */
-.bg-image-full{
+.bg-image-full {
   background-repeat:no-repeat; 
   background-position:center;
   background-size:cover;
@@ -35,160 +35,160 @@ header .bg-image-full {
 
 /* Auth card animated */
 .container-anim {
-    position: relative;
-    
+  position: relative;
 }
+
 .anim-card .face {
-    position: absolute;
-    top: 3rem;
-    left: 25%;
-    border-radius: 10px;
-    width: 50%;
-    height: 100%;
-    backface-visibility: hidden;
-    text-align: center;
-    padding: 1rem;
-    margin: 0 auto;
+  position: absolute;
+  top: 3rem;
+  left: 25%;
+  border-radius: 10px;
+  width: 50%;
+  height: 100%;
+  backface-visibility: hidden;
+  text-align: center;
+  padding: 1rem;
+  margin: 0 auto;
 }
 
 .anim-card .back {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 #auth.active .face,
 #auth.active .front::after,
 #auth.active .back::after {
-    animation : front 650ms 0s 1 linear forwards;
+  animation : front 650ms 0s 1 linear forwards;
 }
 
 #auth.active .back {
-    animation: back 650ms 0s 1 linear forwards;
+  animation: back 650ms 0s 1 linear forwards;
 }
 
 #auth.active .front::after,
 #auth.active .back::after {
-    animation-name: shadow;
+  animation-name: shadow;
 }
 
 #auth.active .front,
 #auth.active .back,
 #auth.active .front::after,
 #auth.active .back::after {
-    animation-play-state: running;
+  animation-play-state: running;
 }
 
 #auth.reverse .front {
-    transform: scale(1) rotateY(180deg);
-    animation-direction: reverse;
+  transform: scale(1) rotateY(180deg);
+  animation-direction: reverse;
 }
 
 #auth.reverse .back {
-    transform: scale(1) rotateY(360deg);
-    animation-direction: reverse;
+  transform: scale(1) rotateY(360deg);
+  animation-direction: reverse;
 }
 
 #animate {
-    position: absolute;
-    bottom: 3rem;
-    width: 350px;
+  position: absolute;
+  bottom: 3rem;
+  width: 350px;
 }
 
 /* Animations */ 
 @keyframes back {
-    0% {
-      transform: scale(1) rotateY(180deg);
-    }
-  
-    10% {
-      transform: scale(1.000768) rotateY(180deg);
-    }
-  
-    20% {
-      transform: scale(1.024576) rotateY(180deg);
-    }
-  
-    30% {
-      transform: scale(1.125424) rotateY(180.17135717260666deg);
-    }
-  
-    40% {
-      transform: scale(1.149232) rotateY(185.48342952341287deg);
-    }
-  
-    50% {
-      transform: scale(1.15) rotateY(221.6397929434164deg);
-    }
-  
-    60% {
-      transform: scale(1.149232) rotateY(318.3602070565836deg);
-    }
-  
-    70% {
-      transform: scale(1.125424) rotateY(354.51657047658716deg);
-    }
-  
-    80% {
-      transform: scale(1.024576) rotateY(359.8286428273933deg);
-    }
-  
-    90% {
-      transform: scale(1.000768) rotateY(360deg);
-    }
-  
-    100% {
-      transform: scale(1) rotateY(360deg);
-    }  
+  0% {
+    transform: scale(1) rotateY(180deg);
+  }
+
+  10% {
+    transform: scale(1.000768) rotateY(180deg);
+  }
+
+  20% {
+    transform: scale(1.024576) rotateY(180deg);
+  }
+
+  30% {
+    transform: scale(1.125424) rotateY(180.17135717260666deg);
+  }
+
+  40% {
+    transform: scale(1.149232) rotateY(185.48342952341287deg);
+  }
+
+  50% {
+    transform: scale(1.15) rotateY(221.6397929434164deg);
+  }
+
+  60% {
+    transform: scale(1.149232) rotateY(318.3602070565836deg);
+  }
+
+  70% {
+    transform: scale(1.125424) rotateY(354.51657047658716deg);
+  }
+
+  80% {
+    transform: scale(1.024576) rotateY(359.8286428273933deg);
+  }
+
+  90% {
+    transform: scale(1.000768) rotateY(360deg);
+  }
+
+  100% {
+    transform: scale(1) rotateY(360deg);
+  }  
 }
 
 @keyframes front {
-    0% {
-      transform: scale(1) rotateY(0deg);
-    }
-  
-    10% {
-      transform: scale(1.000768) rotateY(0deg);
-    }
-  
-    20% {
-      transform: scale(1.024576) rotateY(0deg);
-    }
-  
-    30% {
-      transform: scale(1.125424) rotateY(0.17135717260665195deg);
-    }
-  
-    40% {
-      transform: scale(1.149232) rotateY(5.4834295234128625deg);
-    }
-  
-    50% {
-      transform: scale(1.15) rotateY(41.639792943416424deg);
-    }
-  
-    60% {
-      transform: scale(1.149232) rotateY(138.36020705658356deg);
-    }
-  
-    70% {
-      transform: scale(1.125424) rotateY(174.51657047658713deg);
-    }
-  
-    80% {
-      transform: scale(1.024576) rotateY(179.82864282739334deg);
-    }
-  
-    90% {
-      transform: scale(1.000768) rotateY(180deg);
-    }
-  
-    100% {
-      transform: scale(1) rotateY(180deg);
-    }  
+  0% {
+    transform: scale(1) rotateY(0deg);
+  }
+
+  10% {
+    transform: scale(1.000768) rotateY(0deg);
+  }
+
+  20% {
+    transform: scale(1.024576) rotateY(0deg);
+  }
+
+  30% {
+    transform: scale(1.125424) rotateY(0.17135717260665195deg);
+  }
+
+  40% {
+    transform: scale(1.149232) rotateY(5.4834295234128625deg);
+  }
+
+  50% {
+    transform: scale(1.15) rotateY(41.639792943416424deg);
+  }
+
+  60% {
+    transform: scale(1.149232) rotateY(138.36020705658356deg);
+  }
+
+  70% {
+    transform: scale(1.125424) rotateY(174.51657047658713deg);
+  }
+
+  80% {
+    transform: scale(1.024576) rotateY(179.82864282739334deg);
+  }
+
+  90% {
+    transform: scale(1.000768) rotateY(180deg);
+  }
+
+  100% {
+    transform: scale(1) rotateY(180deg);
+  }  
 }
 
 @media screen and (max-width: 580px) {
-    .anim-card .face {
-        left: 0%;
-        width: 100%;
-    }
+  .anim-card .face {
+    left: 0%;
+    width: 100%;
+  }
 }
