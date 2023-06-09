@@ -1,18 +1,18 @@
-<?php 
+<?php
 
 namespace App\Controllers\Admin;
 
 use App\Controllers\Controller;
 use App\Models\Comment;
 
-class CommentController extends Controller 
+class CommentController extends Controller
 {
     /**
      * Return the view of all the comments
      *
      * @return void
      */
-    public function index() 
+    public function index()
     {
         $this->isAdmin();
         $comments = (new Comment($this->getDB()))->all();
@@ -23,7 +23,7 @@ class CommentController extends Controller
     /**
      * Create a new comment for a post
      *
-     * @param $id
+     * @param id
      * @return void
      */
     public function commentPost(int $id)
@@ -39,7 +39,6 @@ class CommentController extends Controller
             $_SESSION['success'] = 'Votre commentaire a bien été créé. Il faudra attendre sa validation par l\'administrateur.';
             $url = URL.'posts/'.$id.'/?success=true';
             $this->redirect($url);
-            // return header('Location: ' . URL . '/posts/'.$id.'/?success');
         }
     }
 
@@ -60,11 +59,15 @@ class CommentController extends Controller
             $_SESSION['success'] = 'Le status du commentaire est passé en accepté avec succès.';
             $url = URL.'admin/comments?success=true';
             $this->redirect($url);
-            // return header('Location: '. URL .'/admin/comments?success');
         }
     }
 
-    // update the status comment in deleted by the admin
+    /**
+     * Update the status comment in deleted by the admin
+     *
+     * @param $id
+     * @return void
+     */
     public function delete(int $id)
     {
         $this->isAdmin();
@@ -76,7 +79,6 @@ class CommentController extends Controller
             $_SESSION['success'] = 'Le status du commentaire est passé en supprimé avec succès.';
             $url = URL.'admin/comments';
             $this->redirect($url);
-            // return header('Location: '. URL .'/admin/comments');
         }
     }
 }

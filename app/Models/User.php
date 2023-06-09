@@ -1,31 +1,48 @@
-<?php 
+<?php
 
 namespace App\Models;
 
 use DateTime;
 
-class User extends Model {
+class User extends Model
+{
     protected $table = 'users';
 
-    // get the fullname of a user
+    /** 
+     * Get the fullname of a user
+     * 
+     * @return string
+     */
     public function getFullName(): string
     {
         return $this->firstname.' '.$this->lastname;
     }
 
-    // get the firstname of a user
+    /** 
+     * Get the firstname of a user
+     * 
+     * @return string
+     */
     public function getFirstname(): string
     {
         return $this->firstname;
     }
 
-    // get the creation date for a post
+    /** 
+     * Get the creation date for a post
+     * 
+     * @return string
+     */
     public function getCreatedAt(): string
     {
         return (new DateTime($this->created_at))->format('d/m/Y à H:i');
     }
 
-    // get a specific user by its email
+    /** 
+     * Get a specific user by his email
+     * 
+     * @return User
+     */
     public function getByEmail(string $email): User
     {
         $user = $this->query("SELECT * FROM {$this->table} WHERE email = ?", [$email], true);
@@ -35,11 +52,14 @@ class User extends Model {
             $_SESSION['errors']['user'] = ['Email inconnu, veuillez créer un compte.'];
             $url = URL.'auth/signup';
             $this->redirect($url);
-            // header('Location: ' .URL.'auth/signup');
         }
     }
 
-    // create a user
+    /** 
+     * Create a user
+     * 
+     * @return void
+     */
     public function create(array $data, ?array $relations = null)
     {
         $data['isAdmin'] = 0;
@@ -50,7 +70,6 @@ class User extends Model {
             $_SESSION['errors']['email'] = ['Un compte existe déjà avec cet email. Vous pouvez vous connecter avec cet email.'];
             $url = URL.'auth/login';
             $this->redirect($url);
-            // header('Location: ' .URL.'auth/login');
         }else{
             parent::create($data);
 

@@ -6,7 +6,7 @@ use App\Models\Post;
 use App\Models\Comment;
 use App\Validation\Validator;
 
-class AuthController extends Controller 
+class AuthController extends Controller
 {
     /**
      * Return the view of the login form
@@ -35,8 +35,6 @@ class AuthController extends Controller
             $_SESSION['errors'][] = $errors;
             $url = URL.'auth/login';
             $this->redirect($url);
-            // header('Location: ' .URL.'auth/login');
-            exit;
         }
 
         $user = (new User($this->getDB()))->getByEmail($_POST['email']);
@@ -50,19 +48,16 @@ class AuthController extends Controller
                 $_SESSION['message'] = 'Vous êtes connecté.';
                 $url = URL.'/admin/dashboard?success=true';
                 $this->redirect($url);
-                // return header('Location: ' .URL.'/admin/dashboard?success=true');
             }else{
                 $_SESSION['message'] = 'Vous êtes connecté.';
                 $url = URL.'?success=true';
                 $this->redirect($url);
-                // return header('Location: ' .URL."?success=true");
             }
 
         }else{
             $_SESSION['errors']['password'] = ['Mot de passe incorrect.'];
             $url = URL.'auth/login';
             $this->redirect($url);
-            // header('Location: ' .URL.'auth/login');
         }
     }
 
@@ -71,7 +66,7 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function signup() 
+    public function signup()
     {
         return $this->view('auth.signup');
     }
@@ -81,7 +76,7 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function signupPost() 
+    public function signupPost()
     {
         $validator = new Validator($_POST);
         $errors = $validator->validate([
@@ -95,7 +90,6 @@ class AuthController extends Controller
             $_SESSION['errors'][] = $errors;
             $url = URL.'auth/signup';
             $this->redirect($url);
-            // header('Location: ' .URL.'auth/signup');
             exit;
         }else{
             $user = new User($this->getDB());
@@ -113,13 +107,12 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function logout() 
+    public function logout()
     {
         session_destroy();
 
         $url = URL;
         $this->redirect($url);
-        // return header('Location: ' .URL.'/');
     }
 
     /**
@@ -127,7 +120,7 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function admin() 
+    public function admin()
     {
         $this->isAdmin();
         $posts = (new Post($this->getDB()))->all();
