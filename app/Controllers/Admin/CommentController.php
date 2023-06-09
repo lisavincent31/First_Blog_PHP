@@ -23,7 +23,7 @@ class CommentController extends Controller
     /**
      * Create a new comment for a post
      *
-     * @param id
+     * @param $id
      * @return void
      */
     public function commentPost(int $id)

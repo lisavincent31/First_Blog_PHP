@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
         <!-- FavIcons -->
-        <link rel="icon" type="image/x-icon" href="<?= SCRIPTS.'images/favicons/favicon.ico' ?>" />
+        <link rel="icon" type="image/x-icon" href="<?= SCRIPTS.'favicon.ico' ?>" />
     </head>
     <body>
         <?php if(!str_contains($_SERVER['QUERY_STRING'], QUERY.'auth')) : ?>

@@ -50,8 +50,7 @@ class User extends Model
             return $user;
         }else{
             $_SESSION['errors']['user'] = ['Email inconnu, veuillez créer un compte.'];
-            $url = URL.'auth/signup';
-            $this->redirect($url);
+            return header('Location: ', urlencode(URL.'auth/signup'));
         }
     }
 
@@ -68,8 +67,8 @@ class User extends Model
 
         if($user) {
             $_SESSION['errors']['email'] = ['Un compte existe déjà avec cet email. Vous pouvez vous connecter avec cet email.'];
-            $url = URL.'auth/login';
-            $this->redirect($url);
+            
+            return false;
         }else{
             parent::create($data);
 
