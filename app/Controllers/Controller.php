@@ -63,10 +63,10 @@ abstract class Controller {
      * 
      * @return void
      */
-    function redirect($url, $statusCode = 302) 
+    function redirect($url, $statusCode=302) 
     {
         $encodedUrl = urlencode($url);
-        header('Location: ' . $encodedUrl, true, $statusCode);
+        header('Location: '.$encodedUrl, true, $statusCode);
         exit;
     }
 }

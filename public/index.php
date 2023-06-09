@@ -6,10 +6,11 @@ require '../vendor/autoload.php';
 
 define('VIEWS', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR);
 define ('SCRIPTS', dirname($_SERVER['SCRIPT_NAME']) . DIRECTORY_SEPARATOR);
-define('URL', '/Vincent_Lisa_1_repository_git_042023/');
+define('URL', 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+// define('URL', '/Vincent_Lisa_1_repository_git_042023/');
 define('QUERY', 'url=');
 
-// constantes for the connection
+// Constantes for the connection
 define('DB_NAME', 'myblog');
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
