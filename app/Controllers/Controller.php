@@ -34,7 +34,9 @@ abstract class Controller {
         if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
             return true;
         }else{
-            header('Location: ' .URL.'auth/login');
+            $url = URL.'auth/login';
+            $this->redirect($url);
+            // header('Location: ' .URL.'auth/login');
         }
     }
 
@@ -44,7 +46,9 @@ abstract class Controller {
         if(isset($_SESSION['auth']) && $_SESSION['auth'] == 0) {
             return true;
         }else{
-            header('Location: ' .URL.'auth/login');
+            $url = URL.'auth/login';
+            $this->redirect($url);
+            // header('Location: ' .URL.'auth/login');
         }
     }
 
@@ -52,5 +56,17 @@ abstract class Controller {
     protected function getDB()
     {
         return $this->db;
+    }
+
+    /**
+     * Redirect safetly urls
+     * 
+     * @return void
+     */
+    function redirect($url, $statusCode = 302) 
+    {
+        $encodedUrl = urlencode($url);
+        header('Location: ' . $encodedUrl, true, $statusCode);
+        exit;
     }
 }

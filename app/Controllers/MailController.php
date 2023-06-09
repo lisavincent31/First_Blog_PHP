@@ -18,7 +18,9 @@ class MailController {
 
         if($errors) {
             $_SESSION['errors'][] = $errors;
-            header('Location: ' .URL.'/');
+            $url = URL;
+            $this->redirect($url);
+            // header('Location: ' .URL.'/');
             exit;
         }else{
             // Create a new instance
@@ -53,11 +55,14 @@ class MailController {
                 $mail->send();
 
                 $_SESSION['message'] = 'Votre email a été envoyé avec succès !';
-                return header('Location: ' .URL."?success=true");
+                $url = URL.'?success=true';
+                $this->redirect($url);
+                // return header('Location: ' .URL."?success=true");
             } catch (Exception $e) {
                 $_SESSION['errors'][] = 'Oups ! On dirait qu\'une erreur s\'est produite : ' . $mail->ErrorInfo;
-                header('Location: ' .URL.'/');
-                exit;
+                $url = URL;
+                $this->redirect($url);
+                // header('Location: ' .URL.'/');
             }
         }
     }

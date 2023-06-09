@@ -36,7 +36,9 @@ class PostController extends Controller {
 
         if($result) {
             $_SESSION['success'] = 'L\'article a été créé avec succès.';
-            return header('Location: ' . URL . '/admin/posts');
+            $url = URL.'admin/posts';
+            $this->redirect($url);
+            // return header('Location: ' . URL . '/admin/posts');
         }
     }
 
@@ -61,7 +63,9 @@ class PostController extends Controller {
 
         if($result) {
             $_SESSION['success'] = 'L\'article a été modifié avec succès.';
-            return header('Location: ' . URL . '/admin/posts');
+            $url = URL.'admin/posts';
+            $this->redirect($url);
+            // return header('Location: ' . URL . '/admin/posts');
         }
     }
 
@@ -75,7 +79,9 @@ class PostController extends Controller {
 
         if($result) {
             $_SESSION['success'] = 'L\'article a été supprimé avec succès.';
-            return header('Location: '. URL .'/admin/posts');
+            $url = URL.'admin/posts';
+            $this->redirect($url);
+            // return header('Location: '. URL .'/admin/posts');
         }
     }
 }

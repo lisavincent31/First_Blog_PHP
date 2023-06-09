@@ -33,7 +33,9 @@ class AuthController extends Controller
 
         if($errors) {
             $_SESSION['errors'][] = $errors;
-            header('Location: ' .URL.'auth/login');
+            $url = URL.'auth/login';
+            $this->redirect($url);
+            // header('Location: ' .URL.'auth/login');
             exit;
         }
 
@@ -46,16 +48,21 @@ class AuthController extends Controller
 
             if($_SESSION['auth'] == 1) {
                 $_SESSION['message'] = 'Vous êtes connecté.';
-                return header('Location: ' .URL.'/admin/dashboard?success=true');
+                $url = URL.'/admin/dashboard?success=true';
+                $this->redirect($url);
+                // return header('Location: ' .URL.'/admin/dashboard?success=true');
             }else{
                 $_SESSION['message'] = 'Vous êtes connecté.';
-                return header('Location: ' .URL."/?success=true");
+                $url = URL.'?success=true';
+                $this->redirect($url);
+                // return header('Location: ' .URL."?success=true");
             }
 
         }else{
             $_SESSION['errors']['password'] = ['Mot de passe incorrect.'];
-            header('Location: ' .URL.'auth/login');
-            exit;
+            $url = URL.'auth/login';
+            $this->redirect($url);
+            // header('Location: ' .URL.'auth/login');
         }
     }
 
@@ -86,7 +93,9 @@ class AuthController extends Controller
 
         if($errors) {
             $_SESSION['errors'][] = $errors;
-            header('Location: ' .URL.'auth/signup');
+            $url = URL.'auth/signup';
+            $this->redirect($url);
+            // header('Location: ' .URL.'auth/signup');
             exit;
         }else{
             $user = new User($this->getDB());
@@ -108,7 +117,9 @@ class AuthController extends Controller
     {
         session_destroy();
 
-        return header('Location: ' .URL.'/');
+        $url = URL;
+        $this->redirect($url);
+        // return header('Location: ' .URL.'/');
     }
 
     /**

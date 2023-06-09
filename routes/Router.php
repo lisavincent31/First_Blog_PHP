@@ -43,6 +43,8 @@ class Router {
             }
         }
 
-        return header('HTTP/1.0 404 Not Found');
+        $url = 'HTTP/1.0 404 Not Found';
+        $this->redirect($url, 404);
+        // return header('HTTP/1.0 404 Not Found');
     }
 }

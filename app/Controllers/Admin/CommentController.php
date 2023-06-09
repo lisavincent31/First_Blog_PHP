@@ -37,7 +37,9 @@ class CommentController extends Controller
 
         if($result) {
             $_SESSION['success'] = 'Votre commentaire a bien été créé. Il faudra attendre sa validation par l\'administrateur.';
-            return header('Location: ' . URL . '/posts/'.$id.'/?success');
+            $url = URL.'posts/'.$id.'/?success=true';
+            $this->redirect($url);
+            // return header('Location: ' . URL . '/posts/'.$id.'/?success');
         }
     }
 
@@ -56,7 +58,9 @@ class CommentController extends Controller
 
         if($result) {
             $_SESSION['success'] = 'Le status du commentaire est passé en accepté avec succès.';
-            return header('Location: '. URL .'/admin/comments?success');
+            $url = URL.'admin/comments?success=true';
+            $this->redirect($url);
+            // return header('Location: '. URL .'/admin/comments?success');
         }
     }
 
@@ -70,7 +74,9 @@ class CommentController extends Controller
 
         if($result) {
             $_SESSION['success'] = 'Le status du commentaire est passé en supprimé avec succès.';
-            return header('Location: '. URL .'/admin/comments');
+            $url = URL.'admin/comments';
+            $this->redirect($url);
+            // return header('Location: '. URL .'/admin/comments');
         }
     }
 }
