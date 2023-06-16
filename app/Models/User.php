@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use DateTime;
-use App\Controller\Controller;
+use App\Controllers\Controller;
 
 class User extends Model
 {
