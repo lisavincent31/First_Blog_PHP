@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 use App\Validation\Validator;
 
 class MailController extends Controller

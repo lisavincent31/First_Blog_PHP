@@ -90,7 +90,6 @@ class AuthController extends Controller
             $_SESSION['errors'][] = $errors;
             $url = URL.'auth/signup';
             $this->redirect($url);
-            exit;
         }else{
             $user = new User($this->getDB());
 
