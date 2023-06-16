@@ -16,7 +16,11 @@ abstract class Controller {
         $this->db = $db;
     }
 
-    // function to return a specific view file
+    /**
+     * Function to return a specific view file
+     *
+     * @return void
+     */
     protected function view(string $path, array $params = null) 
     {
         ob_start();
@@ -28,7 +32,11 @@ abstract class Controller {
         require VIEWS . 'layout.php';
     }
 
-    // function return true if a user is admin
+    /**
+     * Function return true if a user is admin
+     *
+     * @return void
+     */
     protected function isAdmin()
     {
         if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
@@ -40,7 +48,11 @@ abstract class Controller {
         }
     }
 
-    // function return true if a user is simple user
+    /**
+     * Function return true if a user is simple user
+     *
+     * @return void
+     */
     protected function isUser()
     {
         if(isset($_SESSION['auth']) && $_SESSION['auth'] == 0) {
@@ -52,7 +64,11 @@ abstract class Controller {
         }
     }
 
-    // function to get the connexion with the database
+    /**
+     * Function to get the connexion with the database
+     *
+     * @return void
+     */
     protected function getDB()
     {
         return $this->db;

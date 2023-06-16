@@ -9,6 +9,11 @@ use App\Validation\Validator;
 class MailController extends Controller
 {
 
+    /**
+     * Function to receive the email form
+     *
+     * @return void
+     */
     public function send()
     {
         $validator = new Validator($_POST);

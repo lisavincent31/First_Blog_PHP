@@ -8,7 +8,11 @@ use App\Models\Comment;
 
 class UserController extends Controller 
 {
-    // return the view of all the users website for the admin
+    /**
+     * Return the view of all the users for the admin
+     *
+     * @return void
+     */
     public function index() 
     {
         $this->isAdmin();
@@ -17,6 +21,11 @@ class UserController extends Controller
         return $this->view('admin.user.index', compact('users'));
     }
 
+    /**
+     * Show all users and their comments
+     *
+     * @return void
+     */
     public function show(int $id)
     {
         $this->isAdmin();
