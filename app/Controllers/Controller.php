@@ -7,6 +7,8 @@ use Database\Connection;
 abstract class Controller {
 
     protected $db;
+    public $url = "/Vincent_Lisa_1_repository_git_042023/";
+    public $views = '';
 
     public function __construct(Connection $db) 
     {
@@ -14,6 +16,7 @@ abstract class Controller {
             session_start();
         }
         $this->db = $db;
+        $this->url = $url;
     }
 
     /**
@@ -42,8 +45,8 @@ abstract class Controller {
         if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
             return true;
         }else{
-            $url = URL.'auth/login';
-            $this->redirect($url);
+            $path = $this->url.'auth/login';
+            $this->redirect($path);
             // header('Location: ' .URL.'auth/login');
         }
     }
@@ -58,8 +61,8 @@ abstract class Controller {
         if(isset($_SESSION['auth']) && $_SESSION['auth'] == 0) {
             return true;
         }else{
-            $url = URL.'auth/login';
-            $this->redirect($url);
+            $path = $this->url.'auth/login';
+            $this->redirect($path);
             // header('Location: ' .URL.'auth/login');
         }
     }

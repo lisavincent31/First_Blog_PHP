@@ -6,8 +6,7 @@ require '../vendor/autoload.php';
 
 define('VIEWS', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR);
 define ('SCRIPTS', dirname($_SERVER['SCRIPT_NAME']) . DIRECTORY_SEPARATOR);
-define('ROUTE', 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-// define('URL', '/Vincent_Lisa_1_repository_git_042023/');
+dirname(__DIR__) . '/views/';
 define('QUERY', 'url=');
 
 // Constantes for the connection
