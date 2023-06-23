@@ -70,9 +70,9 @@ abstract class Controller {
     /**
      * Function to get the connexion with the database
      *
-     * @return void
+     * @return Connection
      */
-    protected function getDB()
+    protected function getDB(): Connection
     {
         return $this->db;
     }
