@@ -24,7 +24,6 @@ abstract class Controller {
      *
      * @param string $path The path to the view file
      * @param array|null $params Optional parameters to pass to the view
-     * @return void
      */
     protected function view(string $path, array $params = null) 
     {
