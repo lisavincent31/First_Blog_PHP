@@ -7,6 +7,8 @@ use Database\Connection;
 abstract class Controller {
 
     protected $db;
+    public $url = "/Vincent_Lisa_1_repository_git_042023/";
+    public $views = '../views/';
 
     public function __construct(Connection $db) 
     {
@@ -16,41 +18,69 @@ abstract class Controller {
         $this->db = $db;
     }
 
-    // function to return a specific view file
+    /**
+     * Function to return a specific view file
+     *
+     * @param string $path The path to the view file
+     * @param array|null $params Optional parameters to pass to the view
+     * @return
+     */
     protected function view(string $path, array $params = null) 
     {
         ob_start();
         $path = str_replace('.', DIRECTORY_SEPARATOR, $path);
-        require VIEWS . $path . '.php';
+        require $this->views . $path . '.php';
 
         $content = ob_get_clean();
 
-        require VIEWS . 'layout.php';
+        require $this->views . 'layout.php';
     }
 
-    // function return true if a user is admin
+    /**
+     * Function return true if a user is admin
+     * @return
+     */
     protected function isAdmin()
     {
         if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
             return true;
         }else{
-            header('Location: ' .URL.'auth/login');
+            $path = $this->url.'auth/login';
+            $this->redirect($path);
         }
     }
 
-    // function return true if a user is simple user
+    /**
+     * Function return true if a user is simple user
+     * @return
+     */
     protected function isUser()
     {
         if(isset($_SESSION['auth']) && $_SESSION['auth'] == 0) {
             return true;
         }else{
-            header('Location: ' .URL.'auth/login');
+            $path = $this->url.'auth/login';
+            $this->redirect($path);
         }
     }
 
-    // function to get the connexion with the database
-    protected function getDB()
+    /**
+     * Function to get the connexion with the database
+     *
+     * @return Connection
+     */
+    protected function getDB(): Connection
     {
         return $this->db;
+    }
+
+    /**
+     * Redirect safetly urls
+     * 
+     * @return void
+     */
+    function redirect(string $url, int $statusCode=302) 
+    {
+        header('Location: '.$url, true, $statusCode);
     }
 }

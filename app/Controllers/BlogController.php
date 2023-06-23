@@ -8,21 +8,28 @@ use App\Models\Tag;
 
 class BlogController extends Controller {
 
-    // return the view of all posts in the website
+    /**
+     * Return the view of all posts in the website
+     * @return
+     */
     public function index()
     {
-        // get all posts
+        // Get all posts
         $post = new Post($this->getDB());
         $posts = $post->all();
         
-        // get all tags
+        // Get all tags
         $tag = new Tag($this->getDB());
         $tags = $tag->all();
        
         return $this->view('blog.index', compact('posts', 'tags'));
     }
 
-    // return the view for one post 
+    /**
+     * Return the view for one post 
+     * @param int $id
+     * @return
+     */
     public function show(int $id)
     {
         $post = (new Post($this->getDB()))->findById($id);
@@ -31,7 +38,11 @@ class BlogController extends Controller {
         return $this->view('blog.post', compact('post', 'author'));
     }
     
-    // return all posts that have this tag
+    /**
+     * Return all posts that have this tag
+     * @param int $id
+     * @return
+     */
     public function tag(int $id)
     {
         $tag = (new Tag($this->getDB()))->findById($id);

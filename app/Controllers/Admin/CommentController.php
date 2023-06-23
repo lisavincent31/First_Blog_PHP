@@ -1,14 +1,17 @@
-<?php 
+<?php
 
 namespace App\Controllers\Admin;
 
 use App\Controllers\Controller;
 use App\Models\Comment;
 
-class CommentController extends Controller 
+class CommentController extends Controller
 {
-    // return the view of all the comments
-    public function index() 
+    /**
+     * Return the view of all the comments
+     * @return
+     */
+    public function index()
     {
         $this->isAdmin();
         $comments = (new Comment($this->getDB()))->all();
@@ -16,7 +19,12 @@ class CommentController extends Controller
         return $this->view('admin.comment.index', compact('comments'));
     }
 
-    // create a new comment for a post
+    /**
+     * Create a new comment for a post
+     *
+     * @param $id
+     * @return void
+     */
     public function commentPost(int $id)
     {
         $this->isUser();
@@ -28,11 +36,17 @@ class CommentController extends Controller
 
         if($result) {
             $_SESSION['success'] = 'Votre commentaire a bien été créé. Il faudra attendre sa validation par l\'administrateur.';
-            return header('Location: ' . URL . '/posts/'.$id.'/?success');
+            $url = $this->url.'posts/'.$id.'/?success=true';
+            $this->redirect($url);
         }
     }
 
-    // update the status comment in accepted by the admin
+    /**
+     * Update the status comment in accepted by the admin
+     *
+     * @param int $id
+     * @return void
+     */
     public function accept(int $id)
     {
         $this->isAdmin();
@@ -42,11 +56,17 @@ class CommentController extends Controller
 
         if($result) {
             $_SESSION['success'] = 'Le status du commentaire est passé en accepté avec succès.';
-            return header('Location: '. URL .'/admin/comments?success');
+            $url = $this->url.'admin/comments?success=true';
+            $this->redirect($url);
         }
     }
 
-    // update the status comment in deleted by the admin
+    /**
+     * Update the status comment in deleted by the admin
+     *
+     * @param int $id
+     * @return void
+     */
     public function delete(int $id)
     {
         $this->isAdmin();
@@ -56,7 +76,8 @@ class CommentController extends Controller
 
         if($result) {
             $_SESSION['success'] = 'Le status du commentaire est passé en supprimé avec succès.';
-            return header('Location: '. URL .'/admin/comments');
+            $url = $this->url.'admin/comments';
+            $this->redirect($url);
         }
     }
 }

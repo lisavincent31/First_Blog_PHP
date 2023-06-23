@@ -1,13 +1,20 @@
-<?php 
+<?php
 
 namespace App\Controllers;
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 use App\Validation\Validator;
 
-class MailController {
+class MailController extends Controller
+{
 
-    public function send() 
+    /**
+     * Function to receive the email form
+     *
+     * @return void
+     */
+    public function send()
     {
         $validator = new Validator($_POST);
         $errors = $validator->validate([
@@ -18,8 +25,8 @@ class MailController {
 
         if($errors) {
             $_SESSION['errors'][] = $errors;
-            header('Location: ' .URL.'/');
-            exit;
+            $url = $this->url;
+            $this->redirect($url);
         }else{
             // Create a new instance
             $mail = new PHPMailer(true);
@@ -53,11 +60,12 @@ class MailController {
                 $mail->send();
 
                 $_SESSION['message'] = 'Votre email a été envoyé avec succès !';
-                return header('Location: ' .URL."?success=true");
+                $url = $this->url.'?success=true';
+                $this->redirect($url);
             } catch (Exception $e) {
                 $_SESSION['errors'][] = 'Oups ! On dirait qu\'une erreur s\'est produite : ' . $mail->ErrorInfo;
-                header('Location: ' .URL.'/');
-                exit;
+                $url = $this->url;
+                $this->redirect($url);
             }
         }
     }

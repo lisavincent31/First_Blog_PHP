@@ -1,5 +1,4 @@
 <?php 
-
 namespace App\Controllers;
 
 use App\Models\User;
@@ -7,15 +6,22 @@ use App\Models\Post;
 use App\Models\Comment;
 use App\Validation\Validator;
 
-class AuthController extends Controller {
-
-    // return the view of the login form
+class AuthController extends Controller
+{
+    /**
+     * Return the view of the login form
+     * @return
+     */
     public function login()
     {
         return $this->view('auth.login');
     }
 
-    // function to post the login form
+    /**
+     * Function to post the login form
+     *
+     * @return void
+     */
     public function loginPost()
     {
         $validator = new Validator($_POST);
@@ -26,8 +32,8 @@ class AuthController extends Controller {
 
         if($errors) {
             $_SESSION['errors'][] = $errors;
-            header('Location: ' .URL.'auth/login');
-            exit;
+            $url = $this->url.'auth/login';
+            $this->redirect($url);
         }
 
         $user = (new User($this->getDB()))->getByEmail($_POST['email']);
@@ -39,27 +45,36 @@ class AuthController extends Controller {
 
             if($_SESSION['auth'] == 1) {
                 $_SESSION['message'] = 'Vous êtes connecté.';
-                return header('Location: ' .URL.'/admin/dashboard?success=true');
+                $url = $this->url.'admin/dashboard?success=true';
+                $this->redirect($url);
             }else{
                 $_SESSION['message'] = 'Vous êtes connecté.';
-                return header('Location: ' .URL."/?success=true");
+                $url = $this->url.'?success=true';
+                $this->redirect($url);
             }
 
         }else{
             $_SESSION['errors']['password'] = ['Mot de passe incorrect.'];
-            header('Location: ' .URL.'auth/login');
-            exit;
+            $url = $this->url.'auth/login';
+            $this->redirect($url);
         }
     }
 
-    // return the view of the signup form
-    public function signup() 
+    /**
+     * Return the view of the signup form
+     * @return
+     */
+    public function signup()
     {
         return $this->view('auth.signup');
     }
 
-    // function to post the signup form
-    public function signupPost() 
+    /**
+     * Function to post the signup form
+     *
+     * @return void
+     */
+    public function signupPost()
     {
         $validator = new Validator($_POST);
         $errors = $validator->validate([
@@ -71,8 +86,8 @@ class AuthController extends Controller {
 
         if($errors) {
             $_SESSION['errors'][] = $errors;
-            header('Location: ' .URL.'auth/signup');
-            exit;
+            $url = $this->url.'auth/signup';
+            $this->redirect($url);
         }else{
             $user = new User($this->getDB());
 
@@ -84,16 +99,24 @@ class AuthController extends Controller {
         }
     }
 
-    // function to logout a user and return to the homepage
-    public function logout() 
+    /**
+     * Function to logout a user and return to the homepage
+     *
+     * @return void
+     */
+    public function logout()
     {
         session_destroy();
 
-        return header('Location: ' .URL.'/');
+        $url = $this->url;
+        $this->redirect($url);
     }
 
-    // Return the dashboard admin view with all posts, comments and users
-    public function admin() 
+    /**
+     * Return the dashboard admin view with all posts, comments and users
+     * @return
+     */
+    public function admin()
     {
         $this->isAdmin();
         $posts = (new Post($this->getDB()))->all();

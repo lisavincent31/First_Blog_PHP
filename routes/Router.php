@@ -43,6 +43,7 @@ class Router {
             }
         }
 
+        $url = 'HTTP/1.0 404 Not Found';
         return header('HTTP/1.0 404 Not Found');
     }
 }

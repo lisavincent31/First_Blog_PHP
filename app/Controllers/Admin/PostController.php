@@ -6,9 +6,13 @@ use App\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Tag;
 
-class PostController extends Controller {
+class PostController extends Controller
+{
 
-    // return the page of all posts
+    /** 
+     * Return the page of all posts
+     * @return
+     */
     public function index()
     {
         $posts = (new Post($this->getDB()))->all();
@@ -16,7 +20,10 @@ class PostController extends Controller {
         return $this->view('admin.post.index', compact('posts'));
     }
 
-    // return the form to create a new post by the admin
+    /** 
+     * Return the form to create a new post by the admin
+     * @return
+     */
     public function create()
     {
         $this->isAdmin();
@@ -25,7 +32,11 @@ class PostController extends Controller {
         return $this->view('admin.post.form', compact('tags'));
     }
 
-    // create the new post
+    /** 
+     * Create the new post
+     * 
+     * @return void
+     */
     public function createPost()
     {
         $this->isAdmin();
@@ -36,11 +47,15 @@ class PostController extends Controller {
 
         if($result) {
             $_SESSION['success'] = 'L\'article a été créé avec succès.';
-            return header('Location: ' . URL . '/admin/posts');
+            $url = $this->url.'admin/posts';
+            $this->redirect($url);
         }
     }
 
-    // return the form to edit a post
+    /** 
+     * Return the form to edit a post
+     * @return
+     */
     public function edit(int $id) 
     {
         $this->isAdmin();
@@ -50,7 +65,11 @@ class PostController extends Controller {
         return $this->view('admin.post.form', compact('post', 'tags'));
     }
     
-    // edit a post
+    /** 
+     * Edit a post 
+     * 
+     * @return void
+     */
     public function update(int $id) 
     {
         $this->isAdmin();
@@ -61,11 +80,16 @@ class PostController extends Controller {
 
         if($result) {
             $_SESSION['success'] = 'L\'article a été modifié avec succès.';
-            return header('Location: ' . URL . '/admin/posts');
+            $url = $this->url.'admin/posts';
+            $this->redirect($url);
         }
     }
 
-    // delete a post
+    /**
+     * Delete a post
+     * 
+     * @return void
+     */
     public function delete(int $id)
     {
         $this->isAdmin();
@@ -75,7 +99,8 @@ class PostController extends Controller {
 
         if($result) {
             $_SESSION['success'] = 'L\'article a été supprimé avec succès.';
-            return header('Location: '. URL .'/admin/posts');
+            $url = $this->url.'admin/posts';
+            $this->redirect($url);
         }
     }
 }
