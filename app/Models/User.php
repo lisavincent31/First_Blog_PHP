@@ -52,7 +52,7 @@ class User extends Model
             return $user;
         }else{
             $_SESSION['errors']['user'] = ['Email inconnu, veuillez créer un compte.'];
-            $controller->redirect(URL . 'auth/signup');
+            $controller->redirect($this->url . 'auth/signup');
         }
     }
 
@@ -69,11 +69,11 @@ class User extends Model
 
         if($user) {
             $_SESSION['errors']['email'] = ['Un compte existe déjà avec cet email. Vous pouvez vous connecter avec cet email.'];
-            $controller->redirect(URL . 'auth/login');
+            $controller->redirect($this->url . 'auth/login');
         }else{
             parent::create($data);
 
-            $controller->redirect(URL . 'auth/login');
+            $controller->redirect($this->url . 'auth/login');
         }
     }
 }
