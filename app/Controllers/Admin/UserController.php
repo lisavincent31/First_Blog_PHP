@@ -11,7 +11,6 @@ class UserController extends Controller
     /**
      * Return the view of all the users for the admin
      *
-     * @return void
      */
     public function index() 
     {
@@ -24,7 +23,6 @@ class UserController extends Controller
     /**
      * Show all users and their comments
      *
-     * @return void
      */
     public function show(int $id)
     {

@@ -10,7 +10,6 @@ class CommentController extends Controller
     /**
      * Return the view of all the comments
      *
-     * @return void
      */
     public function index()
     {

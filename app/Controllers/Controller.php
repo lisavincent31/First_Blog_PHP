@@ -39,7 +39,6 @@ abstract class Controller {
     /**
      * Function return true if a user is admin
      *
-     * @return void
      */
     protected function isAdmin()
     {
@@ -54,7 +53,6 @@ abstract class Controller {
     /**
      * Function return true if a user is simple user
      *
-     * @return void
      */
     protected function isUser()
     {

@@ -11,7 +11,6 @@ class AuthController extends Controller
     /**
      * Return the view of the login form
      *
-     * @return void
      */
     public function login()
     {
@@ -64,7 +63,6 @@ class AuthController extends Controller
     /**
      * Return the view of the signup form
      *
-     * @return void
      */
     public function signup()
     {
@@ -117,7 +115,6 @@ class AuthController extends Controller
     /**
      * Return the dashboard admin view with all posts, comments and users
      *
-     * @return void
      */
     public function admin()
     {
