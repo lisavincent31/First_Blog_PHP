@@ -22,13 +22,15 @@ abstract class Controller {
     /**
      * Function to return a specific view file
      *
+     * @param string $path The path to the view file
+     * @param array|null $params Optional parameters to pass to the view
      * @return void
      */
     protected function view(string $path, array $params = null) 
     {
         ob_start();
         $path = str_replace('.', DIRECTORY_SEPARATOR, $path);
-        require VIEWS . $path . '.php';
+        require $this->views . $path . '.php';
 
         $content = ob_get_clean();
 
