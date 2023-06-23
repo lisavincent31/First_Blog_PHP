@@ -8,7 +8,7 @@ abstract class Controller {
 
     protected $db;
     public $url = "/Vincent_Lisa_1_repository_git_042023/";
-    // public $views = dirname(__DIR__).'/views/';
+    public $views;
 
     public function __construct(Connection $db) 
     {
@@ -16,7 +16,7 @@ abstract class Controller {
             session_start();
         }
         $this->db = $db;
-        // $this->url = $url;
+        $this->views = dirname(__DIR__).'/views/';
     }
 
     /**
@@ -32,7 +32,7 @@ abstract class Controller {
 
         $content = ob_get_clean();
 
-        require VIEWS . 'layout.php';
+        require $this->views . 'layout.php';
     }
 
     /**
@@ -47,7 +47,6 @@ abstract class Controller {
         }else{
             $path = $this->url.'auth/login';
             $this->redirect($path);
-            // header('Location: ' .URL.'auth/login');
         }
     }
 
@@ -63,7 +62,6 @@ abstract class Controller {
         }else{
             $path = $this->url.'auth/login';
             $this->redirect($path);
-            // header('Location: ' .URL.'auth/login');
         }
     }
 
