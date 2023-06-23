@@ -9,7 +9,7 @@ class CommentController extends Controller
 {
     /**
      * Return the view of all the comments
-     *
+     * @return
      */
     public function index()
     {
@@ -44,7 +44,7 @@ class CommentController extends Controller
     /**
      * Update the status comment in accepted by the admin
      *
-     * @param $id
+     * @param int $id
      * @return void
      */
     public function accept(int $id)
@@ -64,7 +64,7 @@ class CommentController extends Controller
     /**
      * Update the status comment in deleted by the admin
      *
-     * @param $id
+     * @param int $id
      * @return void
      */
     public function delete(int $id)

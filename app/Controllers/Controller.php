@@ -8,7 +8,7 @@ abstract class Controller {
 
     protected $db;
     public $url = "/Vincent_Lisa_1_repository_git_042023/";
-    public $views;
+    public $views = '../views/';
 
     public function __construct(Connection $db) 
     {
@@ -16,7 +16,6 @@ abstract class Controller {
             session_start();
         }
         $this->db = $db;
-        $this->views = dirname(__DIR__).'/views/';
     }
 
     /**
@@ -24,6 +23,7 @@ abstract class Controller {
      *
      * @param string $path The path to the view file
      * @param array|null $params Optional parameters to pass to the view
+     * @return
      */
     protected function view(string $path, array $params = null) 
     {
@@ -38,7 +38,7 @@ abstract class Controller {
 
     /**
      * Function return true if a user is admin
-     *
+     * @return
      */
     protected function isAdmin()
     {
@@ -52,7 +52,7 @@ abstract class Controller {
 
     /**
      * Function return true if a user is simple user
-     *
+     * @return
      */
     protected function isUser()
     {

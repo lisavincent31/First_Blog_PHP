@@ -10,7 +10,7 @@ class BlogController extends Controller {
 
     /**
      * Return the view of all posts in the website
-     *
+     * @return
      */
     public function index()
     {
@@ -27,7 +27,8 @@ class BlogController extends Controller {
 
     /**
      * Return the view for one post 
-     *
+     * @param int $id
+     * @return
      */
     public function show(int $id)
     {
@@ -39,7 +40,8 @@ class BlogController extends Controller {
     
     /**
      * Return all posts that have this tag
-     *
+     * @param int $id
+     * @return
      */
     public function tag(int $id)
     {

@@ -11,7 +11,7 @@ class PostController extends Controller
 
     /** 
      * Return the page of all posts
-     * 
+     * @return
      */
     public function index()
     {
@@ -22,7 +22,7 @@ class PostController extends Controller
 
     /** 
      * Return the form to create a new post by the admin
-     * 
+     * @return
      */
     public function create()
     {
@@ -54,7 +54,7 @@ class PostController extends Controller
 
     /** 
      * Return the form to edit a post
-     * 
+     * @return
      */
     public function edit(int $id) 
     {
