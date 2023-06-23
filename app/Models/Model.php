@@ -8,6 +8,7 @@ use PDO;
 abstract class Model {
     protected $db;
     protected $table;
+    public $url = "/Vincent_Lisa_1_repository_git_042023/";
 
     public function __construct(Connection $db)
     {

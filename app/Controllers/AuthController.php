@@ -33,7 +33,7 @@ class AuthController extends Controller
 
         if($errors) {
             $_SESSION['errors'][] = $errors;
-            $url = URL.'auth/login';
+            $url = $this->url.'auth/login';
             $this->redirect($url);
         }
 
@@ -46,17 +46,17 @@ class AuthController extends Controller
 
             if($_SESSION['auth'] == 1) {
                 $_SESSION['message'] = 'Vous êtes connecté.';
-                $url = URL.'/admin/dashboard?success=true';
+                $url = $this->url.'admin/dashboard?success=true';
                 $this->redirect($url);
             }else{
                 $_SESSION['message'] = 'Vous êtes connecté.';
-                $url = URL.'?success=true';
+                $url = $this->url.'?success=true';
                 $this->redirect($url);
             }
 
         }else{
             $_SESSION['errors']['password'] = ['Mot de passe incorrect.'];
-            $url = URL.'auth/login';
+            $url = $this->url.'auth/login';
             $this->redirect($url);
         }
     }
@@ -88,7 +88,7 @@ class AuthController extends Controller
 
         if($errors) {
             $_SESSION['errors'][] = $errors;
-            $url = URL.'auth/signup';
+            $url = $this->url.'auth/signup';
             $this->redirect($url);
         }else{
             $user = new User($this->getDB());
@@ -110,7 +110,7 @@ class AuthController extends Controller
     {
         session_destroy();
 
-        $url = URL;
+        $url = $this->url;
         $this->redirect($url);
     }
 

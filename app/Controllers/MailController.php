@@ -25,7 +25,7 @@ class MailController extends Controller
 
         if($errors) {
             $_SESSION['errors'][] = $errors;
-            $url = URL;
+            $url = $this->url;
             $this->redirect($url);
         }else{
             // Create a new instance
@@ -60,11 +60,11 @@ class MailController extends Controller
                 $mail->send();
 
                 $_SESSION['message'] = 'Votre email a été envoyé avec succès !';
-                $url = URL.'?success=true';
+                $url = $this->url.'?success=true';
                 $this->redirect($url);
             } catch (Exception $e) {
                 $_SESSION['errors'][] = 'Oups ! On dirait qu\'une erreur s\'est produite : ' . $mail->ErrorInfo;
-                $url = URL;
+                $url = $this->url;
                 $this->redirect($url);
             }
         }

@@ -49,7 +49,7 @@ class PostController extends Controller
 
         if($result) {
             $_SESSION['success'] = 'L\'article a été créé avec succès.';
-            $url = URL.'admin/posts';
+            $url = $this->url.'admin/posts';
             $this->redirect($url);
         }
     }
@@ -83,7 +83,7 @@ class PostController extends Controller
 
         if($result) {
             $_SESSION['success'] = 'L\'article a été modifié avec succès.';
-            $url = URL.'admin/posts';
+            $url = $this->url.'admin/posts';
             $this->redirect($url);
         }
     }
@@ -102,7 +102,7 @@ class PostController extends Controller
 
         if($result) {
             $_SESSION['success'] = 'L\'article a été supprimé avec succès.';
-            $url = URL.'admin/posts';
+            $url = $this->url.'admin/posts';
             $this->redirect($url);
         }
     }

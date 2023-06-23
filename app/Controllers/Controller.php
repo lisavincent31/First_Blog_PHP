@@ -8,7 +8,7 @@ abstract class Controller {
 
     protected $db;
     public $url = "/Vincent_Lisa_1_repository_git_042023/";
-    public $views = '';
+    // public $views = dirname(__DIR__).'/views/';
 
     public function __construct(Connection $db) 
     {
@@ -16,7 +16,7 @@ abstract class Controller {
             session_start();
         }
         $this->db = $db;
-        $this->url = $url;
+        // $this->url = $url;
     }
 
     /**
@@ -84,7 +84,6 @@ abstract class Controller {
      */
     function redirect(string $url, int $statusCode=302) 
     {
-        $encodedUrl = urlencode($url);
-        header('Location: '.$encodedUrl, true, $statusCode);
+        header('Location: '.$url, true, $statusCode);
     }
 }

@@ -37,7 +37,7 @@ class CommentController extends Controller
 
         if($result) {
             $_SESSION['success'] = 'Votre commentaire a bien été créé. Il faudra attendre sa validation par l\'administrateur.';
-            $url = ROUTE.'posts/'.$id.'/?success=true';
+            $url = $this->url.'posts/'.$id.'/?success=true';
             $this->redirect($url);
         }
     }
@@ -57,7 +57,7 @@ class CommentController extends Controller
 
         if($result) {
             $_SESSION['success'] = 'Le status du commentaire est passé en accepté avec succès.';
-            $url = ROUTE.'admin/comments?success=true';
+            $url = $this->url.'admin/comments?success=true';
             $this->redirect($url);
         }
     }
@@ -77,7 +77,7 @@ class CommentController extends Controller
 
         if($result) {
             $_SESSION['success'] = 'Le status du commentaire est passé en supprimé avec succès.';
-            $url = ROUTE.'admin/comments';
+            $url = $this->url.'admin/comments';
             $this->redirect($url);
         }
     }

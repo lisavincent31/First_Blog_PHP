@@ -6,7 +6,7 @@ require '../vendor/autoload.php';
 
 define('VIEWS', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR);
 define ('SCRIPTS', dirname($_SERVER['SCRIPT_NAME']) . DIRECTORY_SEPARATOR);
-dirname(__DIR__) . '/views/';
+define ('URL', "/Vincent_Lisa_1_repository_git_042023/");
 define('QUERY', 'url=');
 
 // Constantes for the connection
@@ -33,7 +33,6 @@ $router->get('/logout', 'App\Controllers\AuthController@logout');
 
 // Routes for Dashboards
 $router->get('/admin/dashboard', 'App\Controllers\AuthController@admin');
-$router->get('/user/dashboard', 'App\Controllers\AuthController@user');
 
 // Routes for manage the posts
 $router->get('/admin/posts', 'App\Controllers\Admin\PostController@index');
