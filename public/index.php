@@ -1,6 +1,7 @@
 <?php 
 
 use Router\Router; 
+use App\Exceptions\NotFoundException;
 
 require '../vendor/autoload.php';
 
@@ -56,4 +57,8 @@ $router->get('/admin/users/:id', 'App\Controllers\Admin\UserController@show');
 // Route for contact form
 $router->post('/contact', 'App\Controllers\MailController@send');
 
-$router->run();
+try {
+    $router->run();
+} catch(NotFoundException $e) {
+    return $e->error404();
+}
