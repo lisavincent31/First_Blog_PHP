@@ -2,7 +2,7 @@
     <h1 class="text-center p-4 mb-4 shadow">Les derniers articles</h1>
     <div class="row mb-2 align-items-stretch">
         <div class="col-12 mb-4 m-auto p-3">
-            <div class="d-flex justify-content-start align-items-center">
+            <div class="d-flex justify-content-start align-items-center flex-wrap">
                 <span class="lead px-2">Filtres </span>
                 <button class=" btn btn-primary btn-tags mx-2" data-filter="all">Tous</button>
                 <?php foreach($params['tags'] as $tag): ?>
