@@ -11,7 +11,7 @@ define ('URL', "/Vincent_Lisa_1_repository_git_042023/");
 define('QUERY', 'url=');
 
 // Constantes for the connection
-define('DB_NAME', 'myblog');
+define('DB_NAME', 'lisavncnt_personal_blog');
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PWD', '');

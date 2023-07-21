@@ -26,8 +26,8 @@ class AuthController extends Controller
     {
         $validator = new Validator($_POST);
         $errors = $validator->validate([
-            'email' => ['required', 'min:3'],
-            'password' => ['required'],
+            'email' => ['required', 'min:3', 'html'],
+            'password' => ['required', 'html', 'min:3'],
         ]);
 
         if($errors) {
@@ -78,10 +78,10 @@ class AuthController extends Controller
     {
         $validator = new Validator($_POST);
         $errors = $validator->validate([
-            'firstname' => ['required', 'min:3'],
-            'lastname' => ['required', 'min:3'],
-            'email' => ['required', 'min:3', 'unique'],
-            'password' => ['required', 'min:3'],
+            'firstname' => ['required', 'min:3', 'html'],
+            'lastname' => ['required', 'min:3', 'html'],
+            'email' => ['required', 'min:3', 'unique', 'html'],
+            'password' => ['required', 'min:3', 'html'],
         ]);
 
         if($errors) {
