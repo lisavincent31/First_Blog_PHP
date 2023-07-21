@@ -59,8 +59,8 @@ class Validator {
     private function html(string $name, string $value) {
         $value = htmlspecialchars($value);
 
-        if(!isset($value) || $value == null || empty($value)) {
-            $this->errors[$name] = "Attention, certains caractères ne sont pas accepté pour le champ {$name}.";
+        if(preg_match('/[\^£$%&*()}{#~><>,|=+¬-]/', $value)) {
+            $this->errors[$name] = "Attention, certains caractères spéciaux ne sont pas accepté pour le champ {$name}.";
         }
     }
 
