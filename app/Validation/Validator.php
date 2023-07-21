@@ -24,6 +24,9 @@ class Validator {
                         case substr($rule, 0, 3) === 'min:':
                             $this->min($name, $this->data[$name], $rule);
                             break;
+                        case 'html':
+                            $this->html($name, $this->data[$name]);
+                            break;
                         default:
                             break;
                     }
@@ -41,10 +44,9 @@ class Validator {
         if(!isset($value) || $value == null || empty($value)){
             $this->errors[$name] = "Le champ {$name} est requis...";
         }
-
     }
 
-    // this field have a minimum caracters
+    // This field have a minimum caracters
     private function min(string $name, string $value, string $rule) {
         preg_match_all('/(\d+)/', $rule, $matches);
         $limit = (int) $matches[0][0];
@@ -52,10 +54,17 @@ class Validator {
         if(strlen($value) < $limit) {
             $this->errors[$name] = "Le champ {$name} doit comprendre un minimum de {$limit} caractères.";
         }
-
     }
 
-    // this function return all the errors
+    private function html(string $name, string $value) {
+        $value = htmlspecialchars($value);
+
+        if(!isset($value) || $value == null || empty($value)) {
+            $this->errors[$name] = "Attention, certains caractères ne sont pas accepté pour le champ {$name}.";
+        }
+    }
+
+    // This function return all the errors
     private function getErrors(): ?array
     {
         return $this->errors;

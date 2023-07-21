@@ -1,6 +1,7 @@
 <?php 
 
 use Router\Router; 
+use App\Exceptions\NotFoundException;
 
 require '../vendor/autoload.php';
 
@@ -10,7 +11,7 @@ define ('URL', "/Vincent_Lisa_1_repository_git_042023/");
 define('QUERY', 'url=');
 
 // Constantes for the connection
-define('DB_NAME', 'myblog');
+define('DB_NAME', 'lisavncnt_personal_blog');
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PWD', '');
@@ -56,4 +57,8 @@ $router->get('/admin/users/:id', 'App\Controllers\Admin\UserController@show');
 // Route for contact form
 $router->post('/contact', 'App\Controllers\MailController@send');
 
-$router->run();
+try {
+    $router->run();
+} catch(NotFoundException $e) {
+    return $e->error404();
+}

@@ -37,7 +37,7 @@
         <div class="row py-auto networks">
             <div class="col-md-6 text-center">
                 <h3 class="mb-5">Téléchargez mon CV</h3>
-                <a href="<?= SCRIPTS.'/pdf/cv-lisavincent.pdf' ?>" download>
+                <a href="<?= SCRIPTS.'pdf/cv-lisavincent.pdf' ?>" download>
                     <i class="bi bi-file-earmark-arrow-down"></i>
                 </a>
             </div>

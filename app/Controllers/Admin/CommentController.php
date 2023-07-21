@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\Controller;
 use App\Models\Comment;
+use App\Validation\Validator;
 
 class CommentController extends Controller
 {
@@ -29,16 +30,28 @@ class CommentController extends Controller
     {
         $this->isUser();
 
-        $comment = new Comment($this->getDB());
-        $post = [$id];
+        $validator = new Validator($_POST);
+        $errors = $validator->validate([
+            'content' => ['required', 'min:3', 'html']
+        ]);
 
-        $result = $comment->create($_POST, $post);
-
-        if($result) {
-            $_SESSION['success'] = 'Votre commentaire a bien été créé. Il faudra attendre sa validation par l\'administrateur.';
-            $url = $this->url.'posts/'.$id.'/?success=true';
+        if($errors) {
+            $_SESSION['errors'][] = $errors;
+            $url = $this->url.'posts/'.$id;
             $this->redirect($url);
+        }else{
+            $comment = new Comment($this->getDB());
+            $post = [$id];
+    
+            $result = $comment->create($_POST, $post);
+    
+            if($result) {
+                $_SESSION['success'] = 'Votre commentaire a bien été créé. Il faudra attendre sa validation par l\'administrateur.';
+                $url = $this->url.'posts/'.$id.'/?success=true';
+                $this->redirect($url);
+            }
         }
+
     }
 
     /**

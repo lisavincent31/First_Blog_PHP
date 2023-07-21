@@ -3,12 +3,10 @@
 namespace App\Models;
 
 use DateTime;
-use App\Controllers\Controller;
 
 class User extends Model
 {
     protected $table = 'users';
-    public $controller = Controller::class;
 
     /** 
      * Get the fullname of a user
@@ -52,7 +50,7 @@ class User extends Model
             return $user;
         }else{
             $_SESSION['errors']['user'] = ['Email inconnu, veuillez créer un compte.'];
-            $controller->redirect($this->url . 'auth/signup');
+            header('Location: '.$this->url.'auth/signup');
         }
     }
 
@@ -69,11 +67,11 @@ class User extends Model
 
         if($user) {
             $_SESSION['errors']['email'] = ['Un compte existe déjà avec cet email. Vous pouvez vous connecter avec cet email.'];
-            $controller->redirect($this->url . 'auth/login');
+            header('Location: '.$this->url.'auth/login');
         }else{
             parent::create($data);
 
-            $controller->redirect($this->url . 'auth/login');
+            header('Location: '.$this->url);
         }
     }
 }

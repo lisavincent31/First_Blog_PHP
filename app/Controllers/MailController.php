@@ -18,9 +18,9 @@ class MailController extends Controller
     {
         $validator = new Validator($_POST);
         $errors = $validator->validate([
-            'name' => ['required', 'min:3'],
-            'email' => ['required', 'min:3'],
-            'message' => ['required', 'min:3'],
+            'name' => ['required', 'min:3', 'html'],
+            'email' => ['required', 'min:3', 'html'],
+            'message' => ['required', 'min:3', 'html'],
         ]);
 
         if($errors) {
