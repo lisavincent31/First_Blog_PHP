@@ -42,6 +42,6 @@ To change the connection configuration you have to go into public/index.php.
 You can modify the constantes for the connection with yours in lignes 14 - 17.
 
 Then, open the file into database/mysql/request.sql.
-Cut and paste the requests into the request SQL of your database software.
+Copy and paste the requests into the request SQL of your database software.
 
 You have now access to a few lignes for the blog (users, posts, comments).
