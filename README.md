@@ -25,8 +25,8 @@ The administration pages will therefore be accessible under certain conditions a
 
 To clone the git repository you have to go into the folder "www" of your server (wamp, xamp, ...). Then, you can enter this commande line in your terminal :
 ```
-git clone https://github.com/lisavincent31/Vincent_Lisa_1_repository_git_042023.git
-cd Vincent_Lisa_1_repository_git_042023.git
+git clone https://github.com/lisavincent31/First_Blog_PHP.git
+cd First_Blog_PHP
 ```
 
 ## Second step : Create the environment
